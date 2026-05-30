@@ -1,0 +1,12 @@
+repo,tier,estimated_score,feasibility_score,score_changed,active_quarters,max_gap,cv_commits,total_commits_lb,g2_fail,g3_warn,recommendation
+Helicone/helicone,B,3,5,True,12,0,0.362,5294,False,False,UPGRADE from 3 → 5
+hoppscotch/hoppscotch,C,3,5,True,12,0,0.306,1504,False,False,UPGRADE from 3 → 5
+chatwoot/chatwoot,B,3,5,True,12,0,0.163,2989,False,False,UPGRADE from 3 → 5
+formbricks/formbricks,C,3,5,True,12,0,0.438,4479,False,False,UPGRADE from 3 → 5
+documenso/documenso,C,3,4,True,12,0,0.8,3610,False,False,UPGRADE from 3 → 4
+maybe-finance/maybe,B,3,1,True,7,4,0.354,1419,True,False,EXCLUDE — G2 gate fail (gap >= 4 quarters)
+qdrant/qdrant,B,3,5,True,12,0,0.28,4079,False,False,UPGRADE from 3 → 5
+tursodatabase/libsql,B,3,4,True,12,0,0.811,7879,False,False,UPGRADE from 3 → 4
+inngest/inngest,B,3,5,True,12,0,0.25,3562,False,False,UPGRADE from 3 → 5
+milvus-io/milvus,B,4,5,True,12,0,0.121,7488,False,False,UPGRADE from 4 → 5
+oven-sh/bun,B,4,5,True,12,0,0.179,9487,False,False,UPGRADE from 4 → 5

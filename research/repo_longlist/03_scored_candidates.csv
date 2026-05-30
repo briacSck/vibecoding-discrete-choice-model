@@ -12,22 +12,22 @@ id,name,primary_repo_url,country,category,repo_richness,panel_feasibility,ration
 7,Novu,https://github.com/novuhq/novu,Israel,Startup,4,4,5,4,5,5,3,4.35,A,Flag: Israel HQ
 40,pass-culture,https://github.com/pass-culture/pass-culture-main,France,Gov-tech,5,5,5,4,3,3,4,4.45,A,Flag: quasi-public
 1,Langfuse,https://github.com/langfuse/langfuse,Germany,Startup,4,4,3,5,5,5,4,4.10,A,None
-34,Milvus/Zilliz,https://github.com/milvus-io/milvus,"USA/China",Company-backed OSS,5,4,5,4,3,3,3,4.15,B,Flag: CNCF governance
-39,Bun/oven-sh,https://github.com/oven-sh/bun,USA,Company-backed OSS,4,4,5,4,3,4,2,4.05,B,Note: identification concerns
+34,Milvus/Zilliz,https://github.com/milvus-io/milvus,"USA/China",Company-backed OSS,5,5,5,4,3,3,3,4.40,A,"Flag: CNCF governance; feasibility verified 2026-05-30"
+39,Bun/oven-sh,https://github.com/oven-sh/bun,USA,Company-backed OSS,4,5,5,4,3,4,2,4.30,A,"Note: identification concerns; feasibility verified 2026-05-30"
 12,Cal.com,https://github.com/calcom/cal.com,USA,Startup,4,4,3,5,5,5,2,4.00,B,Flag: partial closed-source 2025
-15,Inngest,https://github.com/inngest/inngest,USA,Startup,3,3,5,5,5,5,2,3.95,B,None
-37,Turso,https://github.com/tursodatabase/libsql,USA,Startup,3,3,5,4,5,5,4,3.95,B,None
+15,Inngest,https://github.com/inngest/inngest,USA,Startup,3,5,5,5,5,5,2,4.45,A,Feasibility verified 2026-05-30
+37,Turso,https://github.com/tursodatabase/libsql,USA,Startup,3,4,5,4,5,5,4,4.20,A,Feasibility verified 2026-05-30
 8,Plane,https://github.com/makeplane/plane,"India/USA",Startup,3,4,5,4,3,4,4,3.95,B,Flag: India ops
-35,Qdrant,https://github.com/qdrant/qdrant,Germany,Startup,4,3,3,4,5,5,3,3.70,B,None
+35,Qdrant,https://github.com/qdrant/qdrant,Germany,Startup,4,5,3,4,5,5,3,4.20,A,Feasibility verified 2026-05-30
 6,Windmill,https://github.com/windmill-labs/windmill,France,Startup,4,4,3,4,3,4,3,3.70,B,"Flag: France HQ; small team"
 5,Dub.co,https://github.com/dubinc/dub,USA,Startup,4,3,2,5,5,5,2,3.55,B,None
-18,Maybe Finance,https://github.com/maybe-finance/maybe,USA,Startup,3,3,5,3,3,3,4,3.45,B,Flag: original team dissolved
-2,Helicone,https://github.com/Helicone/helicone,USA,Startup,3,3,2,4,5,5,2,3.25,B,None
-13,Chatwoot,https://github.com/chatwoot/chatwoot,"India/USA",Startup,4,3,2,4,3,5,3,3.40,B,Flag: India ops
-16,Hoppscotch,https://github.com/hoppscotch/hoppscotch,India,Startup,4,3,2,3,3,4,4,3.20,C,"Flag: India HQ; community-driven"
-9,Documenso,https://github.com/documenso/documenso,"Germany/USA",Startup,3,3,2,3,5,5,3,3.20,C,None
+18,Maybe Finance,https://github.com/maybe-finance/maybe,USA,Startup,3,1,5,3,3,3,4,2.60,EXCLUDE,"G2 gate FAIL: 4 zero-commit quarters (2023 Q1-Q4) + zero in 2025-Q4; verified 2026-05-30"
+2,Helicone,https://github.com/Helicone/helicone,USA,Startup,3,5,2,4,5,5,2,3.75,B,Feasibility verified 2026-05-30
+13,Chatwoot,https://github.com/chatwoot/chatwoot,"India/USA",Startup,4,5,2,4,3,5,3,3.90,B,"Flag: India ops; feasibility verified 2026-05-30"
+16,Hoppscotch,https://github.com/hoppscotch/hoppscotch,India,Startup,4,5,2,3,3,4,4,3.70,B,"Flag: India HQ; community-driven; feasibility verified 2026-05-30"
+9,Documenso,https://github.com/documenso/documenso,"Germany/USA",Startup,3,4,2,3,5,5,3,3.45,C,Feasibility verified 2026-05-30
 25,Decidim,https://github.com/decidim/decidim,Spain,Civic-tech,3,3,3,3,3,3,5,3.10,C,"Flag: civic-tech; non-startup"
 23,ma-cantine,https://github.com/betagouv/ma-cantine,France,Gov-tech,3,4,2,3,3,3,4,3.10,C,Flag: gov-tech
 21,mon-entreprise,https://github.com/betagouv/mon-entreprise,France,Gov-tech,3,3,3,3,3,3,4,3.05,C,Flag: gov-tech
-10,Formbricks,https://github.com/formbricks/formbricks,Germany,Startup,2,3,2,3,5,5,3,3.00,C,"Flag: Germany; early-stage"
+10,Formbricks,https://github.com/formbricks/formbricks,Germany,Startup,2,5,2,3,5,5,3,3.50,B,"Flag: Germany; early-stage; feasibility verified 2026-05-30"
 22,rdv-service-public,https://github.com/betagouv/rdv-service-public,France,Gov-tech,3,3,2,3,3,3,3,2.80,C,Flag: gov-tech

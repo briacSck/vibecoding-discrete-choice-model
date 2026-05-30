@@ -1,8 +1,10 @@
 # Top Candidates — Codebase Rationalization Paper
 
-## Section A — Top 10 for Pilot Scrape
+*Last updated: 2026-05-30 — Panel feasibility scores for 11 previously estimated repos verified via GitHub API (verify_feasibility.py). Five repos upgraded to Tier A; one excluded (G2 fail). See 07_feasibility_scores.csv for raw data.*
 
-These repos combine the highest weighted scores (≥ 4.45) with confirmed panel feasibility ≥ 4 from Agent E, making them the best starting point for quarterly panel construction. Rankings reflect corrected arithmetic scores from 03_scored_candidates.csv.
+## Section A — Top 14 for Pilot Scrape
+
+These repos combine the highest weighted scores (≥ 4.20) with confirmed panel feasibility ≥ 4 via GitHub API, making them the best starting point for quarterly panel construction. Rankings reflect verified scores from 03_scored_candidates.csv. Repos marked * were promoted to Tier A in the 2026-05-30 feasibility verification run.
 
 ---
 
@@ -146,6 +148,62 @@ These repos combine the highest weighted scores (≥ 4.45) with confirmed panel 
 
 ---
 
+### 11. Inngest * *(promoted from Tier B — feasibility verified 2026-05-30)*
+**GitHub:** https://github.com/inngest/inngest  
+**Country:** USA  
+**Product type:** Background Jobs / Workflow Engine (Growth startup, a16z-backed)  
+**Weighted score:** 4.45 (was 3.95; panel_feasibility upgraded 3→5)
+
+**Rationale:** Inngest had one of the clearest feasibility upgrades in the verification run — all 12 quarters active with consistent velocity (312→427 commits/quarter in 2023, remaining in 190–411 range through 2025). The repo has a confirmed rationalization event (v1→v2 SDK rewrite, step-function execution model overhaul) with 5 on visibility. External metadata is strong (5/5 — a16z backing, identifiable leadership). Now ties with Astral for the 4.45 score threshold.
+
+**Key signals to scrape:** v2 SDK migration PRs by quarter, step-function commit surge, deprecated v1 code deletion, contributor concentration during rewrite, test coverage changes pre/post v2.
+
+**Main risk:** Smaller engineering team than some Tier A candidates — event signal may require finer-grained PR label filtering to separate v2 migration from routine feature work.
+
+---
+
+### 12. Milvus/Zilliz * *(promoted from Tier B — feasibility verified 2026-05-30)*
+**GitHub:** https://github.com/milvus-io/milvus  
+**Country:** USA/China  
+**Product type:** Vector Database (Mature, CNCF, Zilliz-backed, Series C)  
+**Weighted score:** 4.40 (was 4.15; panel_feasibility upgraded 4→5)
+
+**Rationale:** Milvus showed the most consistent absolute commit velocity of any verified repo — 502–733 commits/quarter in 2023–2024, 518–584 in 2025 — with a CV well below 0.50. The v2.0 ground-up rewrite (Python→Go+Rust) is the largest-scale rationalization event in the sample. The feasibility upgrade to 5 reflects what is effectively a production-grade CNCF project with enterprise backing and a dedicated engineering org. Zilliz as commercial backer provides a clear decision-making principal.
+
+**Key signals to scrape:** Go/Rust LOC growth by quarter, Python deprecation PRs, v2.0 branch merge timeline, component-level refactor burst, contributor org affiliation (Zilliz vs. community).
+
+**Main risk:** CNCF governance layer adds noise to causal attribution; treat Zilliz commits separately from community contributions in panel construction.
+
+---
+
+### 13. Turso (libsql) * *(promoted from Tier B — feasibility verified 2026-05-30)*
+**GitHub:** https://github.com/tursodatabase/libsql  
+**Country:** USA  
+**Product type:** Embedded/Edge Database (Seed/Series A startup, Glauber Costa / ChiselStrike pivot)  
+**Weighted score:** 4.20 (was 3.95; panel_feasibility upgraded 3→4)
+
+**Rationale:** Turso/libsql shows a distinctive commit trajectory — very high early velocity (1,129–1,525 commits/quarter in 2023 Q1–Q4) followed by a steady deceleration through 2025 (93–138/quarter). This pattern is consistent with a rapid rationalization sprint at founding followed by stabilization — a different but valid treated-unit type from ongoing iterative refactors. The ChiselStrike→Turso product pivot is a full-stack rationalization event with identifiable dates. Glauber Costa is highly contactable.
+
+**Key signals to scrape:** Commit velocity deceleration curve, C/Rust LOC ratio by quarter, SQLite fork divergence PRs, API stabilization commits, libsql-server vs. core split timing.
+
+**Main risk:** Sharp velocity decline in 2025 (1,525→56 commits/quarter) may reflect product maturity rather than rationalization per se; event dating requires careful interpretation.
+
+---
+
+### 14. Qdrant * *(promoted from Tier B — feasibility verified 2026-05-30)*
+**GitHub:** https://github.com/qdrant/qdrant  
+**Country:** Germany  
+**Product type:** Vector Database (Growth startup, Series A ~$28M)  
+**Weighted score:** 4.20 (was 3.70; panel_feasibility upgraded 3→5)
+
+**Rationale:** Qdrant was the largest feasibility underestimate in the sample — all 12 quarters active with strong and growing velocity (172→467 commits/quarter). As a Rust-native vector database with a Series A and identifiable CTO (Andrey Vasnetsov), it has both data richness and outreach tractability. The iterative storage engine evolution (HNSW optimizations, sparse vector support, quantization) represents a partial/iterative rationalization pattern — valuable for the fuzzy-treated identification strategy.
+
+**Key signals to scrape:** HNSW refactor PRs by quarter, quantization implementation burst, sparse vector layer addition, Rust dependency updates, API versioning commits.
+
+**Main risk:** No single named event — classified as partial-event/iterative rationalization. Event dating will require peak-refactor-PR quarter estimation rather than a clean announcement date. Also note: over-representing vector databases (Milvus + Qdrant + Weaviate) — consider selecting only two of the three.
+
+---
+
 ## Section B — Top 10 for Outreach / Validation Interviews
 
 These candidates combine high contactability with identifiable technical leads and clear organizational structure, making them the best targets for 20-minute validation interviews.
@@ -201,17 +259,17 @@ These candidates combine high contactability with identifiable technical leads a
 
 ---
 
-### 8. Turso / ChiselStrike
+### 8. Turso / ChiselStrike * *(upgraded to Tier A)*
 **Contact lead:** Glauber Costa, CEO  
 **Contact route:** GitHub (@glauberc), Twitter/X (@glcst), LinkedIn  
-**Why useful:** The ChiselStrike→Turso pivot involved a full product rationalization, not just a codebase refactor. Glauber Costa has written extensively about the decision. Seed-stage perspective adds maturity heterogeneity to the interview sample.
+**Why useful:** The ChiselStrike→Turso pivot involved a full product rationalization, not just a codebase refactor. Glauber Costa has written extensively about the decision. Seed-stage perspective adds maturity heterogeneity to the interview sample. Verified: all 12 quarters active, with commit deceleration pattern consistent with post-rationalization stabilization.
 
 ---
 
-### 9. Qdrant
+### 9. Qdrant * *(upgraded to Tier A)*
 **Contact lead:** Andrey Vasnetsov, CTO  
 **Contact route:** GitHub (@generall), LinkedIn, company website (qdrant.tech/about)  
-**Why useful:** Andrey Vasnetsov is the technical decision-maker for Qdrant's iterative Rust storage engine evolution. His perspective on when iterative refactoring is preferred over a ground-up rewrite is directly relevant to the paper's decision threshold analysis.
+**Why useful:** Andrey Vasnetsov is the technical decision-maker for Qdrant's iterative Rust storage engine evolution. His perspective on when iterative refactoring is preferred over a ground-up rewrite is directly relevant to the paper's decision threshold analysis. Verified: all 12 quarters active, strong growth trajectory.
 
 ---
 
@@ -222,7 +280,16 @@ These candidates combine high contactability with identifiable technical leads a
 
 ---
 
-## Section C — 5 Edge Candidates for Heterogeneity
+### 11. Inngest * *(newly Tier A)*
+**Contact lead:** Tony Holdstock-Brown, CEO  
+**Contact route:** GitHub (@tonyhb), Twitter/X, LinkedIn  
+**Why useful:** Inngest's v2 SDK rewrite represents a complete execution model overhaul. As a background-job-as-a-service platform with a16z backing, this is a clean treated unit. An interview can clarify whether the v2 rewrite was triggered by customer-scale pressure or accumulated technical debt from the v1 architecture — a key identification question for the model.
+
+---
+
+## Section C — 4 Edge Candidates for Heterogeneity
+
+*Note: Maybe Finance removed from this section — excluded by G2 gate fail (verified 2026-05-30: zero commits in all four 2023 quarters + 2025-Q4). The original revival team built exclusively on a private fork before going OSS in early 2024; the public repo's 2023 history is absent. Milvus removed from this section — promoted to Tier A (Section A #12).*
 
 These candidates score lower overall but add dimensions of diversity that improve the generalizability of the paper's findings.
 
@@ -255,18 +322,10 @@ These candidates score lower overall but add dimensions of diversity that improv
 
 ---
 
-### 4. Maybe Finance
-**GitHub:** https://github.com/maybe-finance/maybe  
-**Weighted score:** 3.40  
-**Diversity dimension:** Failed startup → OSS revival pattern; unique organizational discontinuity; personal finance product type
+### 4. Plane
+*(Moved up; Maybe Finance excluded by G2 gate fail; Milvus promoted to Tier A)*
+**GitHub:** https://github.com/makeplane/plane  
+**Weighted score:** 3.95  
+**Diversity dimension:** India-based engineering operations; React→Next.js migration as a framework-migration rationalization type; emerging market startup context
 
-**Why include:** Maybe Finance's trajectory — original VC-backed team wound down, then OSS revival by a different team in 2023 with 45k+ stars — is a unique rationalization pattern: full organizational replacement rather than incremental refactoring. This "phoenix" case tests whether the paper's model generalizes beyond incumbent team rationalization. Personal finance is the only consumer fintech representative in the sample.
-
----
-
-### 5. Milvus/Zilliz
-**GitHub:** https://github.com/milvus-io/milvus  
-**Weighted score:** 3.90  
-**Diversity dimension:** Dual USA/China operational structure; CNCF governance layer; mature vector database with ground-up v2.0 rebuild; largest-scale rewrite in the sample
-
-**Why include:** The Milvus v2.0 rebuild (Python→Go+Rust, ground-up architecture) is the most complete and best-documented ground-up rewrite in the entire sample — even more dramatic than Dagger's Project Theseus. The CNCF governance and dual US/China structure add complexity, but Zilliz as the commercial backer remains identifiable. Including this case tests whether foundation-governed projects show different rationalization timing than fully-owned startups.
+**Why include:** Plane's 1,924 refactor PRs constitute one of the strongest quantitative rationalization signals in the sample. India HQ/engineering adds geographic and labor-cost-structure diversity. The React→Next.js migration is a framework-driven rationalization — a distinct causal mechanism worth capturing.

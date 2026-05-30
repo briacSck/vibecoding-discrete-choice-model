@@ -1,6 +1,6 @@
 # Open Questions & Follow-Up Actions
 
-## Status as of 2026-05-28 (post Agent D/E synthesis)
+## Status as of 2026-05-30 (post verify_feasibility.py run)
 
 This document tracks unresolved uncertainties, data gaps, and methodological questions that must be addressed before pilot scraping begins. Items are grouped by type and include a recommended action and priority.
 
@@ -52,23 +52,25 @@ This document tracks unresolved uncertainties, data gaps, and methodological que
 
 ## 2. Repos Where GitHub Feasibility Was Not Fully Verified (Rate-Limited)
 
-Agent E did not return feasibility scores for all 46 candidates. The following were estimated conservatively based on metadata, not directly verified:
+**STATUS: RESOLVED — verify_feasibility.py run on 2026-05-30.**  
+Raw data: `07_feasibility_panel.csv` (132 repo-quarter rows), `07_feasibility_scores.csv` (11 summaries).  
+All scores updated in `03_scored_candidates.csv`; tier promotions and exclusions reflected in `04_top_candidates.md`.
 
-| Repo | Estimated Panel Feasibility | Action Needed |
-|------|----------------------------|---------------|
-| Helicone/helicone | 3 (estimated) | Run Agent E equivalent on quarterly commit counts |
-| Hoppscotch/hoppscotch | 3 (estimated) | Verify quarterly activity 2023–2025 |
-| Chatwoot/chatwoot | 3 (estimated) | Verify quarterly activity |
-| Formbricks/formbricks | 3 (estimated) | Verify total commits (may fail G3 gate) |
-| Documenso/documenso | 3 (estimated) | Verify quarterly activity |
-| maybe-finance/maybe | 3 (estimated) | Verify post-revival activity consistency |
-| Qdrant/qdrant | 4 (estimated) | Verify; likely confirmed given Series A activity level |
-| Turso/libsql | 3 (estimated) | Verify; seed-stage repo may have more variance |
-| Inngest/inngest | 3 (estimated) | Verify; 5,893 commits is lower bound |
-| Milvus/milvus | 4 (estimated) | Verify; CNCF project may have different activity patterns |
-| Bun/bun | 4 (estimated) | Verify; Oven Inc. may have variable quarterly cadence |
+| Repo | Estimated | Verified | Score changed | Outcome |
+|------|-----------|----------|---------------|---------|
+| Helicone/helicone | 3 | **5** | YES | B stays B; ws 3.25→3.75 |
+| Hoppscotch/hoppscotch | 3 | **5** | YES | C→B; ws 3.20→3.70 |
+| Chatwoot/chatwoot | 3 | **5** | YES | B stays B; ws 3.40→3.90 |
+| Formbricks/formbricks | 3 | **5** | YES | C→B; ws 3.00→3.50 |
+| Documenso/documenso | 3 | **4** | YES | C stays C; ws 3.20→3.45 |
+| maybe-finance/maybe | 3 | **1** | YES | **EXCLUDED — G2 gate fail** (zero commits 2023 Q1–Q4 + 2025-Q4) |
+| Qdrant/qdrant | 3 | **5** | YES | **B→A**; ws 3.70→4.20 |
+| Turso/libsql | 3 | **4** | YES | **B→A**; ws 3.95→4.20 |
+| Inngest/inngest | 3 | **5** | YES | **B→A**; ws 3.95→4.45 |
+| Milvus/milvus | 4 | **5** | YES | **B→A**; ws 4.15→4.40 |
+| Bun/bun | 4 | **5** | YES | **B→A**; ws 4.05→4.30 |
 
-**Recommended action:** Run a targeted GitHub API query for each of these repos to fetch commit counts by quarter for 2023–2025. This can be done programmatically in one script.
+**Net result:** 5 repos promoted to Tier A (qdrant, turso, inngest, milvus, bun); 2 repos promoted from Tier C to B (hoppscotch, formbricks); 1 excluded (maybe-finance); 0 downgrades. Tier A pool grows from 12 → 17 repos.
 
 ---
 
@@ -89,10 +91,9 @@ Agent E did not return feasibility scores for all 46 candidates. The following w
 **Decision needed:** Is Decidim too multi-principal to support causal identification? Or is it a useful edge case for multi-stakeholder rationalization?
 **Recommendation:** Downgrade to Tier C (heterogeneity only); do not use as a primary treated unit. Include if the paper has a section on non-firm rationalization contexts.
 
-### 3.4 Maybe Finance — org discontinuity
+### 3.4 Maybe Finance — org discontinuity *(MOOT — EXCLUDED 2026-05-30)*
 **Issue:** The original Maybe Finance team wound down ~2022; a different team revived the project as OSS in 2023. Are these the same "organization" for panel purposes?
-**Decision needed:** How to handle the organizational discontinuity in the panel? Should pre-revival quarters be treated as missing, or as a clean break?
-**Recommendation:** Treat revival date as t=0 for this org; include only post-revival quarters. Usable as a within-panel structural break rather than a standard panel unit.
+**Resolution:** Excluded by G2 gate fail. verify_feasibility.py confirmed zero commits in all four 2023 quarters — the revival team built on a private fork before going OSS in early 2024. The public repo's 2023 history is entirely absent, making a 12-quarter panel impossible. No interpretive decision needed; excluded from sample.
 
 ### 3.5 Astral (ruff/uv) — OpenAI acquisition/partnership ~2025
 **Issue:** If Astral was acquired by or formally partnered with OpenAI in ~2025, the post-acquisition quarters may reflect OpenAI's organizational priorities rather than Astral's. This is a structural break in the panel.
@@ -147,7 +148,7 @@ Listed in recommended execution order:
 
 1. **Resolve metadata gaps** (Section 1 items): Confirm ClickHouse migration for Langfuse; confirm Appwrite v2.0 launch date; pin Novu v2.0 to specific quarter. Estimated time: 2–3 hours manual GitHub inspection.
 
-2. **Verify GitHub feasibility for 11 unrated repos** (Section 2): Run quarterly commit count queries for Helicone, Hoppscotch, Chatwoot, Formbricks, Documenso, Maybe Finance, Qdrant, Turso, Inngest, Milvus, Bun. Estimated time: 1–2 hours scripted GitHub API queries.
+2. ~~**Verify GitHub feasibility for 11 unrated repos** (Section 2)~~ **DONE (2026-05-30)** — verify_feasibility.py run; all 11 scores updated in 03_scored_candidates.csv. See Section 2 above for results table.
 
 3. **Make interpretive decisions on borderline cases** (Section 3): Decide gov-tech stratum treatment; confirm Astral/OpenAI acquisition date; decide on Milvus/CNCF inclusion. Requires PI decision, not research assistant work.
 
