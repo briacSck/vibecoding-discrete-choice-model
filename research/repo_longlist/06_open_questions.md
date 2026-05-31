@@ -114,31 +114,38 @@ The Rust (1987) model requires a scalar or low-dimensional state variable (analo
 - Test coverage (if tracked in CI)
 
 **Open question:** Which of these is most observable via GitHub API, and which best maps to the theoretical state variable? None captures debt directly — this is a measurement model question requiring literature review and/or instrument validation.
+Decision: capture all ; identification strategy mapping TBD
 
 ### 4.2 How to identify the rationalization event date
 For repos with named events (e.g., Trigger.dev v3, Infisical MongoDB→Postgres), the event date can be pinned to a specific PR merge or release tag. For partial events (iterative refactors), there is no clean date.
 
 **Open question:** Should partial-event repos be included as "fuzzy treated" units (with event date estimated as the quarter of peak refactor PR volume)? Or excluded from the treated group and used as controls?
+Decision: Fuzzy, with possibilities for difference in discontinuity design.
 
 ### 4.3 Confounders: funding rounds vs. rationalization
 Many rationalization events coincide with Series A/B funding (Trigger.dev v3 ~ Series A; Airbyte CDK v2 ~ post-Series B). Funding rounds increase engineering headcount and may mechanically increase refactoring capacity.
 
 **Open question:** Should funding rounds be included as covariates in the structural model? Source: Crunchbase/PitchBook. Risk: funding data is often imprecise in timing.
+Decision : disregard mostly ; make some robustness/exploratory checks though to see the impact. It might have a statistically significant effect, if not fully disregard.
+
 
 ### 4.4 Multi-repo organizations
 Several candidates have activity spread across multiple repos (e.g., Astral has ruff, uv, rye; Dagger has dagger, dagfun, SDKs). Should the unit of analysis be a single primary repo, the org's total GitHub activity, or the relevant subsystem repo?
 
 **Recommendation:** Primary repo as unit of analysis; note secondary repos for cross-referencing event signals. Document multi-repo structures in panel metadata.
+Decision : follow recommendation
 
 ### 4.5 Contributor identification and turnover
 The Rust model treats the decision-maker as a stable agent. In practice, CTO/lead engineer turnover may shift the rationalization threshold mid-panel.
 
 **Open question:** Should contributor turnover (measurable via GitHub author history) be included as a covariate? How to handle cases like Maybe Finance (full team replacement)?
+Decision : collect the information, but only include it as a dummy in case of 66%+ (think about threshold) replacement of the team.
 
 ### 4.6 Right-censoring: in-progress rewrites at panel end
 Several candidates (Appwrite v2.0, some gov-tech repos) may have events that are still in progress as of 2025 Q4. These are right-censored in the panel.
 
 **Open question:** How to handle right-censored rationalization events in the NFXP estimator? Standard survival analysis techniques may apply, but the structural model may need modification.
+Decision : don't include
 
 ---
 
