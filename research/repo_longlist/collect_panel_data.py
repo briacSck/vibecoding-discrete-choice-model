@@ -100,6 +100,30 @@ PANEL_CSV       = os.path.join(OUT_DIR, "08_panel_data.csv")
 CONTRIB_CSV     = os.path.join(OUT_DIR, "08_contributor_history.csv")
 LOG_FILE        = os.path.join(OUT_DIR, "08_collection_log.txt")
 
+def _load_dotenv():
+    """Walk up from the script's directory to find a .env file and load it."""
+    directory = os.path.dirname(os.path.abspath(__file__))
+    for _ in range(5):  # search up to 5 levels up
+        candidate = os.path.join(directory, ".env")
+        if os.path.isfile(candidate):
+            with open(candidate, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    key, _, value = line.partition("=")
+                    key = key.strip()
+                    value = value.strip().strip('"').strip("'")
+                    if key and key not in os.environ:
+                        os.environ[key] = value
+            return
+        parent = os.path.dirname(directory)
+        if parent == directory:
+            break
+        directory = parent
+
+_load_dotenv()
+
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 BASE_URL     = "https://api.github.com"
 
@@ -333,17 +357,26 @@ def collect_code_frequency(repo: str) -> dict:
     return result
 
 
-def collect_commits_and_authors(repo: str) -> tuple[dict, dict]:
+def collect_commits_and_authors(repo: str,
+                                skip_quarters: set = None) -> tuple[dict, dict]:
     """
     Returns:
-      commits_by_q: {quarter: int}  — commit count per quarter
-      authors_by_q: {quarter: {author_login: int}}  — commit counts per author per quarter
+      commits_by_q: {quarter: int | None}  — None means already saved, skip API call
+      authors_by_q: {quarter: dict | None} — None means load from authors_cache on use
     Paginates commits per quarter to extract author.login.
+    Skips API calls for quarters in skip_quarters (already written to CSV).
     """
+    skip_quarters = skip_quarters or set()
     commits_by_q = {}
     authors_by_q = {}
 
     for qname, since, until in QUARTERS:
+        if qname in skip_quarters:
+            commits_by_q[qname] = None   # sentinel: load from existing CSV
+            authors_by_q[qname] = None
+            log(f"   {qname}: skipped (already collected)")
+            continue
+
         url = (f"{BASE_URL}/repos/{repo}/commits"
                f"?since={since}&until={until}&per_page=100")
         count = 0
@@ -351,11 +384,9 @@ def collect_commits_and_authors(repo: str) -> tuple[dict, dict]:
 
         for commit in _paginate(url, call_sleep=0.2):
             count += 1
-            # author.login may be None for commits with unregistered email
             author_obj = commit.get("author") or {}
             login = author_obj.get("login") if author_obj else None
             if not login:
-                # Fall back to the commit-level author name as identifier
                 commit_author = (commit.get("commit") or {}).get("author") or {}
                 name = commit_author.get("name") or "unknown"
                 login = f"_name:{name}"
@@ -468,36 +499,53 @@ def collect_issues(repo: str) -> dict:
 # Resume support
 # ---------------------------------------------------------------------------
 
-def load_existing_repos(panel_csv: str) -> set:
-    """Returns set of repos for which all 12 quarters are already collected."""
-    if not os.path.exists(panel_csv):
-        return set()
-    repo_quarters: dict[str, set] = defaultdict(set)
-    with open(panel_csv, encoding="utf-8") as f:
-        for row in csv.DictReader(f):
-            repo_quarters[row["repo"]].add(row["quarter"])
-    all_q = {q for q, _, _ in QUARTERS}
-    return {repo for repo, qs in repo_quarters.items() if qs >= all_q}
+def load_checkpoint(panel_csv: str, contrib_csv: str) -> tuple[set, dict]:
+    """
+    Returns:
+      done_pairs   — set of (repo, quarter) already written to panel CSV
+      authors_cache — {(repo, quarter): set[author_login]} from contributor CSV
+                      used to reconstruct prev_authors when resuming mid-repo
+    """
+    done_pairs: set = set()
+    authors_cache: dict = defaultdict(set)
+
+    if os.path.exists(panel_csv):
+        with open(panel_csv, encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                done_pairs.add((row["repo"], row["quarter"]))
+
+    if os.path.exists(contrib_csv):
+        with open(contrib_csv, encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                authors_cache[(row["repo"], row["quarter"])].add(row["author_login"])
+
+    return done_pairs, dict(authors_cache)
 
 # ---------------------------------------------------------------------------
 # Main collection loop
 # ---------------------------------------------------------------------------
 
 def collect_repo(repo: str, event_type: str, call_sleep: float,
-                 panel_writer, contrib_writer):
+                 panel_writer, contrib_writer, panel_file, contrib_file,
+                 done_pairs: set, authors_cache: dict):
     log(f"\n{'='*60}")
     log(f"Collecting: {repo} [{event_type}]")
     log(f"{'='*60}")
+
+    skip_quarters = {q for (r, q) in done_pairs if r == repo}
+    n_skip = len(skip_quarters)
+    if n_skip:
+        log(f"  Resuming — {n_skip}/12 quarters already saved, skipping them")
 
     # 1. Code frequency (1 API call, all-time weekly)
     log("  → code frequency ...")
     freq = collect_code_frequency(repo)
 
-    # 2. Commits + authors (per quarter pagination)
+    # 2. Commits + authors — skips already-done quarters
     log("  → commits + authors ...")
-    commits_by_q, authors_by_q = collect_commits_and_authors(repo)
+    commits_by_q, authors_by_q = collect_commits_and_authors(repo, skip_quarters)
 
-    # 3. PRs (single paginated pass)
+    # 3. PRs (single paginated pass — always re-fetched for incomplete repos)
     log("  → closed PRs ...")
     pr_data = collect_prs(repo)
 
@@ -505,22 +553,40 @@ def collect_repo(repo: str, event_type: str, call_sleep: float,
     log("  → issues ...")
     issue_data = collect_issues(repo)
 
-    # 5. Compute contributor turnover fraction
-    # turnover_frac[q] = fraction of q's authors not seen in q-1
+    # 5. Compute metrics and write one row per quarter immediately
     quarter_names = [q for q, _, _ in QUARTERS]
-    prev_authors: set = set()
+    rows_written = 0
 
-    panel_rows = []
     for i, (qname, _, _) in enumerate(QUARTERS):
-        curr_authors = set(authors_by_q.get(qname, {}).keys())
+        # Skip quarters already in the CSV
+        if (repo, qname) in done_pairs:
+            # Still need prev_authors for turnover continuity; read from cache
+            prev_authors_this = authors_cache.get((repo, qname), set())
+            # Update running prev_authors for next iteration
+            if i == 0:
+                _prev = prev_authors_this
+            else:
+                _prev = prev_authors_this if prev_authors_this else _prev  # noqa: F821
+            continue
 
-        if i == 0 or not prev_authors:
+        # Resolve author set: None sentinel means this quarter was skipped in
+        # collect_commits_and_authors, which shouldn't happen for non-done quarters.
+        raw_authors = authors_by_q.get(qname)
+        curr_authors = set(raw_authors.keys()) if raw_authors else set()
+
+        # Contributor turnover: compare to previous quarter's author set
+        if i == 0:
+            _prev = set()
+        prev_authors = _prev
+
+        if not prev_authors:
             turnover_frac = None
         else:
             new_count = len(curr_authors - prev_authors)
-            turnover_frac = round(new_count / len(prev_authors), 4) if prev_authors else None
+            turnover_frac = round(new_count / len(prev_authors), 4)
 
-        prev_authors = curr_authors if curr_authors else prev_authors
+        # Advance prev_authors (keep last non-empty set for continuity)
+        _prev = curr_authors if curr_authors else prev_authors
 
         # PR metrics
         pq = pr_data.get(qname, {})
@@ -533,15 +599,13 @@ def collect_repo(repo: str, event_type: str, call_sleep: float,
         lat_median     = _round2(_median(latencies))
         lat_p75        = _round2(_percentile(latencies, 75))
 
-        # Label coverage warning: < 5% of PRs are labeled
         label_coverage_warn = (
             1 if total_prs >= 10 and (labeled_count / total_prs) < 0.05 else 0
         )
 
         # Code churn
         adds, dels = freq.get(qname, (0, 0))
-        total_changes = adds + dels
-        churn_ratio = round(dels / (total_changes + 1), 4)
+        churn_ratio = round(dels / (adds + dels + 1), 4)
 
         # Issues
         iq = issue_data.get(qname, {})
@@ -549,44 +613,48 @@ def collect_repo(repo: str, event_type: str, call_sleep: float,
         issues_closed = iq.get("closed", 0)
         backlog_delta = issues_opened - issues_closed
 
-        commits  = commits_by_q.get(qname, 0)
+        commits   = commits_by_q.get(qname) or 0
         n_authors = len(curr_authors)
 
         row = {
-            "repo":                     repo,
-            "event_type":               event_type,
-            "quarter":                  qname,
-            "commits":                  commits,
-            "pr_count_total":           total_prs,
-            "pr_count_refactor":        refactor_prs,
-            "pr_refactor_ratio":        refactor_ratio if refactor_ratio is not None else "",
-            "pr_review_latency_median": lat_median if lat_median is not None else "",
-            "pr_review_latency_p75":    lat_p75 if lat_p75 is not None else "",
-            "additions":                adds,
-            "deletions":                dels,
-            "churn_ratio":              churn_ratio,
-            "issues_opened":            issues_opened,
-            "issues_closed":            issues_closed,
-            "issue_backlog_delta":      backlog_delta,
-            "contributor_count":        n_authors,
+            "repo":                      repo,
+            "event_type":                event_type,
+            "quarter":                   qname,
+            "commits":                   commits,
+            "pr_count_total":            total_prs,
+            "pr_count_refactor":         refactor_prs,
+            "pr_refactor_ratio":         refactor_ratio if refactor_ratio is not None else "",
+            "pr_review_latency_median":  lat_median if lat_median is not None else "",
+            "pr_review_latency_p75":     lat_p75 if lat_p75 is not None else "",
+            "additions":                 adds,
+            "deletions":                 dels,
+            "churn_ratio":               churn_ratio,
+            "issues_opened":             issues_opened,
+            "issues_closed":             issues_closed,
+            "issue_backlog_delta":       backlog_delta,
+            "contributor_count":         n_authors,
             "contributor_turnover_frac": turnover_frac if turnover_frac is not None else "",
-            "label_coverage_warn":      label_coverage_warn,
+            "label_coverage_warn":       label_coverage_warn,
         }
-        panel_rows.append(row)
 
-        # Contributor history rows
-        for author, count in (authors_by_q.get(qname) or {}).items():
+        # Write panel row immediately and flush
+        panel_writer.writerow(row)
+        panel_file.flush()
+
+        # Write contributor history rows and flush
+        for author, count in (raw_authors or {}).items():
             contrib_writer.writerow({
                 "repo":         repo,
                 "quarter":      qname,
                 "author_login": author,
                 "commit_count": count,
             })
+        contrib_file.flush()
 
-    for row in panel_rows:
-        panel_writer.writerow(row)
+        rows_written += 1
 
-    log(f"  ✓ {repo} done — {len(panel_rows)} quarter rows written")
+    log(f"  ✓ {repo} done — {rows_written} new quarter rows written "
+        f"({n_skip} already had)")
 
 
 # ---------------------------------------------------------------------------
@@ -603,20 +671,24 @@ def main():
         print(f"Authenticated (token: ...{GITHUB_TOKEN[-4:]})\n", flush=True)
         call_sleep = 0.3
 
-    # Resume: find repos already fully collected
-    done_repos = load_existing_repos(PANEL_CSV)
-    if done_repos:
-        log(f"Resume: {len(done_repos)} repos already collected — skipping: "
-            f"{', '.join(sorted(done_repos))}")
+    # Load checkpoint: per-(repo, quarter) granularity
+    done_pairs, authors_cache = load_checkpoint(PANEL_CSV, CONTRIB_CSV)
+    all_q = {q for q, _, _ in QUARTERS}
+    done_repos = {repo for (repo, _) in done_pairs
+                  if {q for (r, q) in done_pairs if r == repo} >= all_q}
 
-    # Open output files in append mode (allows resume)
+    if done_pairs:
+        log(f"Checkpoint loaded: {len(done_pairs)} (repo, quarter) pairs already saved "
+            f"({len(done_repos)} repos fully complete)")
+
+    # Open output files in append mode
     panel_exists   = os.path.exists(PANEL_CSV)
     contrib_exists = os.path.exists(CONTRIB_CSV)
 
     with open(PANEL_CSV, "a", newline="", encoding="utf-8") as pf, \
          open(CONTRIB_CSV, "a", newline="", encoding="utf-8") as cf:
 
-        panel_writer  = csv.DictWriter(pf, fieldnames=PANEL_FIELDS)
+        panel_writer   = csv.DictWriter(pf, fieldnames=PANEL_FIELDS)
         contrib_writer = csv.DictWriter(cf, fieldnames=CONTRIB_FIELDS)
 
         if not panel_exists:
@@ -626,12 +698,11 @@ def main():
 
         for repo, event_type in TIER_A_REPOS:
             if repo in done_repos:
-                log(f"Skipping {repo} (already collected)")
+                log(f"Skipping {repo} (all 12 quarters already collected)")
                 continue
-            collect_repo(repo, event_type, call_sleep, panel_writer, contrib_writer)
-            # Flush after each repo so partial runs are recoverable
-            pf.flush()
-            cf.flush()
+            collect_repo(repo, event_type, call_sleep,
+                         panel_writer, contrib_writer, pf, cf,
+                         done_pairs, authors_cache)
 
     log("\nAll done.")
     log(f"Panel data:          {PANEL_CSV}")
