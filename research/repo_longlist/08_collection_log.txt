@@ -1,324 +1,356 @@
-[2026-05-31 17:52:32] 
+[2026-07-05 21:40:30] 
 ============================================================
-[2026-05-31 17:52:32] Collecting: PostHog/posthog [full_rewrite]
-[2026-05-31 17:52:32] ============================================================
-[2026-05-31 17:52:32]   → code frequency ...
-[2026-05-31 17:52:32]   [HTTP 422] https://api.github.com/repos/PostHog/posthog/stats/code_frequency
-[2026-05-31 17:52:32]   → commits + authors ...
-[2026-05-31 17:52:51]    2023-Q1:   968 commits,  31 authors
-[2026-05-31 17:53:16]    2023-Q2:  1032 commits,  29 authors
-[2026-05-31 17:53:35]    2023-Q3:   952 commits,  39 authors
-[2026-05-31 17:54:08]    2023-Q4:  1503 commits,  54 authors
-[2026-05-31 18:27:07] 
+[2026-07-05 21:40:30] Collecting: PostHog/posthog [full_rewrite]
+[2026-07-05 21:40:30] ============================================================
+[2026-07-05 21:40:30]   → commits + authors ...
+[2026-07-05 21:40:48]    2023-Q1:   965 human commits (+3 bot),  30 authors
+[2026-07-05 21:41:06]    2023-Q2:  1031 human commits (+1 bot),  28 authors
+[2026-07-05 21:41:23]    2023-Q3:   948 human commits (+4 bot),  38 authors
+[2026-07-05 21:41:47]    2023-Q4:  1499 human commits (+4 bot),  53 authors
+[2026-07-05 21:42:09]    2024-Q1:  1251 human commits (+22 bot),  40 authors
+[2026-07-05 21:42:33]    2024-Q2:  1446 human commits (+11 bot),  53 authors
+[2026-07-05 21:42:56]    2024-Q3:  1371 human commits (+3 bot),  57 authors
+[2026-07-05 21:43:35]    2024-Q4:  1309 human commits (+2 bot),  58 authors
+[2026-07-05 21:45:14]    2025-Q1:  2562 human commits (+1 bot),  76 authors
+[2026-07-05 21:46:20]    2025-Q2:  2667 human commits (+4 bot),  88 authors
+[2026-07-05 21:47:36]    2025-Q3:  3204 human commits (+4 bot), 106 authors
+[2026-07-05 21:49:04]    2025-Q4:  3788 human commits (+1 bot), 122 authors
+[2026-07-05 21:49:04]   → closed PRs ...
+[2026-07-05 22:11:50]   → issues ...
+[2026-07-05 22:24:39]   ✓ PostHog/posthog done — 12 new quarter rows written (0 already had)
+[2026-07-05 22:24:39] 
 ============================================================
-[2026-05-31 18:27:07] Collecting: PostHog/posthog [full_rewrite]
-[2026-05-31 18:27:07] ============================================================
-[2026-05-31 18:27:07]   → code frequency ...
-[2026-05-31 18:27:08]   [HTTP 422] https://api.github.com/repos/PostHog/posthog/stats/code_frequency
-[2026-05-31 18:27:08]   → commits + authors ...
-[2026-05-31 18:27:28]    2023-Q1:   968 commits,  31 authors
-[2026-05-31 18:27:49]    2023-Q2:  1032 commits,  29 authors
-[2026-05-31 18:28:09]    2023-Q3:   952 commits,  39 authors
-[2026-05-31 18:28:45]    2023-Q4:  1503 commits,  54 authors
-[2026-05-31 18:29:14]    2024-Q1:  1273 commits,  41 authors
-[2026-05-31 18:29:48]    2024-Q2:  1457 commits,  54 authors
-[2026-05-31 18:30:21]    2024-Q3:  1374 commits,  58 authors
-[2026-05-31 18:30:54]    2024-Q4:  1311 commits,  59 authors
-[2026-05-31 18:31:33]    2025-Q1:  2563 commits,  77 authors
-[2026-05-31 18:32:11]    2025-Q2:  2671 commits,  89 authors
-[2026-05-31 18:32:56]    2025-Q3:  3208 commits, 107 authors
-[2026-05-31 18:33:48]    2025-Q4:  3789 commits, 123 authors
-[2026-05-31 18:33:48]   → closed PRs ...
-[2026-05-31 18:48:05]   → issues ...
-[2026-05-31 18:52:16]   ✓ PostHog/posthog done — 12 quarter rows written
-[2026-05-31 18:52:16] 
+[2026-07-05 22:24:39] Collecting: Infisical/infisical [migration]
+[2026-07-05 22:24:39] ============================================================
+[2026-07-05 22:24:39]   → commits + authors ...
+[2026-07-05 22:25:02]    2023-Q1:  1087 human commits (+20 bot),  44 authors
+[2026-07-05 22:25:14]    2023-Q2:   715 human commits (+34 bot),  20 authors
+[2026-07-05 22:25:28]    2023-Q3:   934 human commits (+3 bot),  42 authors
+[2026-07-05 22:25:41]    2023-Q4:   583 human commits (+3 bot),  24 authors
+[2026-07-05 22:26:08]    2024-Q1:  1557 human commits (+26 bot),  25 authors
+[2026-07-05 22:26:36]    2024-Q2:  1733 human commits (+4 bot),  22 authors
+[2026-07-05 22:27:01]    2024-Q3:  1604 human commits (+6 bot),  26 authors
+[2026-07-05 22:27:20]    2024-Q4:  1215 human commits (+2 bot),  27 authors
+[2026-07-05 22:27:40]    2025-Q1:  1302 human commits (+3 bot),  22 authors
+[2026-07-05 22:28:10]    2025-Q2:  2090 human commits (+0 bot),  17 authors
+[2026-07-05 22:28:34]    2025-Q3:  1677 human commits (+1 bot),  22 authors
+[2026-07-05 22:29:10]    2025-Q4:  2446 human commits (+1 bot),  18 authors
+[2026-07-05 22:29:10]   → closed PRs ...
+[2026-07-05 22:30:54]   → issues ...
+[2026-07-05 22:32:15]   ✓ Infisical/infisical done — 12 new quarter rows written (0 already had)
+[2026-07-05 22:32:15] 
 ============================================================
-[2026-05-31 18:52:16] Collecting: Infisical/infisical [migration]
-[2026-05-31 18:52:16] ============================================================
-[2026-05-31 18:52:16]   → code frequency ...
-[2026-05-31 18:52:16]   [HTTP 422] https://api.github.com/repos/Infisical/infisical/stats/code_frequency
-[2026-05-31 18:52:16]   → commits + authors ...
-[2026-05-31 18:52:31]    2023-Q1:  1107 commits,  46 authors
-[2026-05-31 18:52:40]    2023-Q2:   749 commits,  21 authors
-[2026-05-31 18:52:53]    2023-Q3:   937 commits,  43 authors
-[2026-05-31 18:53:00]    2023-Q4:   586 commits,  26 authors
-[2026-05-31 18:53:20]    2024-Q1:  1583 commits,  26 authors
-[2026-05-31 18:53:43]    2024-Q2:  1737 commits,  23 authors
-[2026-05-31 18:54:04]    2024-Q3:  1610 commits,  28 authors
-[2026-05-31 18:54:21]    2024-Q4:  1217 commits,  29 authors
-[2026-05-31 18:54:39]    2025-Q1:  1305 commits,  23 authors
-[2026-05-31 18:55:07]    2025-Q2:  2090 commits,  17 authors
-[2026-05-31 18:55:29]    2025-Q3:  1678 commits,  23 authors
-[2026-05-31 18:56:01]    2025-Q4:  2447 commits,  19 authors
-[2026-05-31 18:56:01]   → closed PRs ...
-[2026-05-31 18:57:36]   → issues ...
-[2026-05-31 18:58:22]   ✓ Infisical/infisical done — 12 quarter rows written
-[2026-05-31 18:58:22] 
+[2026-07-05 22:32:15] Collecting: dagger/dagger [full_rewrite]
+[2026-07-05 22:32:15] ============================================================
+[2026-07-05 22:32:15]   → commits + authors ...
+[2026-07-05 22:32:23]    2023-Q1:   466 human commits (+99 bot),  29 authors
+[2026-07-05 22:32:29]    2023-Q2:   294 human commits (+73 bot),  31 authors
+[2026-07-05 22:32:33]    2023-Q3:   249 human commits (+50 bot),  31 authors
+[2026-07-05 22:32:39]    2023-Q4:   263 human commits (+27 bot),  28 authors
+[2026-07-05 22:32:46]    2024-Q1:   443 human commits (+35 bot),  39 authors
+[2026-07-05 22:32:55]    2024-Q2:   439 human commits (+26 bot),  46 authors
+[2026-07-05 22:33:03]    2024-Q3:   471 human commits (+6 bot),  34 authors
+[2026-07-05 22:33:10]    2024-Q4:   354 human commits (+34 bot),  29 authors
+[2026-07-05 22:33:17]    2025-Q1:   455 human commits (+34 bot),  43 authors
+[2026-07-05 22:33:25]    2025-Q2:   365 human commits (+36 bot),  47 authors
+[2026-07-05 22:33:30]    2025-Q3:   285 human commits (+25 bot),  30 authors
+[2026-07-05 22:33:35]    2025-Q4:   249 human commits (+43 bot),  29 authors
+[2026-07-05 22:33:35]   → closed PRs ...
+[2026-07-05 22:35:57]   → issues ...
+[2026-07-05 22:38:18]   ✓ dagger/dagger done — 12 new quarter rows written (0 already had)
+[2026-07-05 22:38:18] 
 ============================================================
-[2026-05-31 18:58:22] Collecting: dagger/dagger [full_rewrite]
-[2026-05-31 18:58:22] ============================================================
-[2026-05-31 18:58:22]   → code frequency ...
-[2026-05-31 18:58:23]   [HTTP 422] https://api.github.com/repos/dagger/dagger/stats/code_frequency
-[2026-05-31 18:58:23]   → commits + authors ...
-[2026-05-31 18:58:30]    2023-Q1:   565 commits,  32 authors
-[2026-05-31 18:58:35]    2023-Q2:   367 commits,  33 authors
-[2026-05-31 18:58:39]    2023-Q3:   299 commits,  33 authors
-[2026-05-31 18:58:43]    2023-Q4:   290 commits,  30 authors
-[2026-05-31 18:58:49]    2024-Q1:   478 commits,  41 authors
-[2026-05-31 18:58:56]    2024-Q2:   465 commits,  48 authors
-[2026-05-31 18:59:02]    2024-Q3:   477 commits,  35 authors
-[2026-05-31 18:59:07]    2024-Q4:   388 commits,  31 authors
-[2026-05-31 18:59:13]    2025-Q1:   489 commits,  44 authors
-[2026-05-31 18:59:19]    2025-Q2:   401 commits,  48 authors
-[2026-05-31 18:59:24]    2025-Q3:   310 commits,  31 authors
-[2026-05-31 18:59:27]    2025-Q4:   292 commits,  30 authors
-[2026-05-31 18:59:27]   → closed PRs ...
-[2026-05-31 19:01:39]   → issues ...
-[2026-05-31 19:03:13]   ✓ dagger/dagger done — 12 quarter rows written
-[2026-05-31 19:03:13] 
+[2026-07-05 22:38:18] Collecting: triggerdotdev/trigger.dev [full_rewrite]
+[2026-07-05 22:38:18] ============================================================
+[2026-07-05 22:38:18]   → commits + authors ...
+[2026-07-05 22:38:40]    2023-Q1:  1866 human commits (+0 bot),   6 authors
+[2026-07-05 22:38:53]    2023-Q2:  1028 human commits (+9 bot),   6 authors
+[2026-07-05 22:39:05]    2023-Q3:   777 human commits (+55 bot),  32 authors
+[2026-07-05 22:39:10]    2023-Q4:   292 human commits (+23 bot),  23 authors
+[2026-07-05 22:39:14]    2024-Q1:   223 human commits (+14 bot),  20 authors
+[2026-07-05 22:39:21]    2024-Q2:   397 human commits (+43 bot),  16 authors
+[2026-07-05 22:39:27]    2024-Q3:   293 human commits (+20 bot),  18 authors
+[2026-07-05 22:39:31]    2024-Q4:   203 human commits (+18 bot),  18 authors
+[2026-07-05 22:39:36]    2025-Q1:   372 human commits (+11 bot),  15 authors
+[2026-07-05 22:39:41]    2025-Q2:   278 human commits (+22 bot),  12 authors
+[2026-07-05 22:39:47]    2025-Q3:   314 human commits (+13 bot),  13 authors
+[2026-07-05 22:39:50]    2025-Q4:   172 human commits (+9 bot),  14 authors
+[2026-07-05 22:39:50]   → closed PRs ...
+[2026-07-05 22:40:53]   → issues ...
+[2026-07-05 22:41:39]   ✓ triggerdotdev/trigger.dev done — 12 new quarter rows written (0 already had)
+[2026-07-05 22:41:39] 
 ============================================================
-[2026-05-31 19:03:13] Collecting: triggerdotdev/trigger.dev [full_rewrite]
-[2026-05-31 19:03:13] ============================================================
-[2026-05-31 19:03:13]   → code frequency ...
-[2026-05-31 19:03:14]   [code_freq] unexpected response: {}
-[2026-05-31 19:03:14]   → commits + authors ...
-[2026-05-31 19:03:36]    2023-Q1:  1866 commits,   6 authors
-[2026-05-31 19:03:48]    2023-Q2:  1037 commits,   7 authors
-[2026-05-31 19:03:58]    2023-Q3:   832 commits,  33 authors
-[2026-05-31 19:04:02]    2023-Q4:   315 commits,  24 authors
-[2026-05-31 19:04:06]    2024-Q1:   237 commits,  21 authors
-[2026-05-31 19:04:12]    2024-Q2:   440 commits,  17 authors
-[2026-05-31 19:04:17]    2024-Q3:   313 commits,  19 authors
-[2026-05-31 19:04:20]    2024-Q4:   221 commits,  19 authors
-[2026-05-31 19:04:25]    2025-Q1:   383 commits,  17 authors
-[2026-05-31 19:04:30]    2025-Q2:   300 commits,  13 authors
-[2026-05-31 19:04:35]    2025-Q3:   327 commits,  15 authors
-[2026-05-31 19:04:37]    2025-Q4:   181 commits,  15 authors
-[2026-05-31 19:04:37]   → closed PRs ...
-[2026-05-31 19:05:33]   → issues ...
-[2026-05-31 19:05:59]   ✓ triggerdotdev/trigger.dev done — 12 quarter rows written
-[2026-05-31 19:05:59] 
+[2026-07-05 22:41:39] Collecting: appwrite/appwrite [full_rewrite]
+[2026-07-05 22:41:39] ============================================================
+[2026-07-05 22:41:39]   → commits + authors ...
+[2026-07-05 22:41:49]    2023-Q1:   758 human commits (+0 bot),  23 authors
+[2026-07-05 22:42:00]    2023-Q2:   805 human commits (+0 bot),  24 authors
+[2026-07-05 22:42:19]    2023-Q3:  1425 human commits (+0 bot),  29 authors
+[2026-07-05 22:42:34]    2023-Q4:  1201 human commits (+0 bot),  29 authors
+[2026-07-05 22:42:55]    2024-Q1:  1635 human commits (+0 bot),  25 authors
+[2026-07-05 22:43:10]    2024-Q2:  1122 human commits (+0 bot),  27 authors
+[2026-07-05 22:43:26]    2024-Q3:  1255 human commits (+0 bot),  20 authors
+[2026-07-05 22:43:40]    2024-Q4:  1151 human commits (+0 bot),  20 authors
+[2026-07-05 22:44:03]    2025-Q1:  1802 human commits (+0 bot),  18 authors
+[2026-07-05 22:44:25]    2025-Q2:  1792 human commits (+0 bot),  20 authors
+[2026-07-05 22:44:47]    2025-Q3:  1615 human commits (+0 bot),  28 authors
+[2026-07-05 22:45:09]    2025-Q4:  1667 human commits (+0 bot),  25 authors
+[2026-07-05 22:45:09]   → closed PRs ...
+[2026-07-05 22:46:47]   → issues ...
+[2026-07-05 22:47:23] Checkpoint loaded: 48 (repo, quarter) pairs already saved (4 repos fully complete)
+[2026-07-05 22:47:23] Skipping PostHog/posthog (all 12 quarters already collected)
+[2026-07-05 22:47:23] Skipping Infisical/infisical (all 12 quarters already collected)
+[2026-07-05 22:47:23] Skipping dagger/dagger (all 12 quarters already collected)
+[2026-07-05 22:47:23] Skipping triggerdotdev/trigger.dev (all 12 quarters already collected)
+[2026-07-05 22:47:23] 
 ============================================================
-[2026-05-31 19:05:59] Collecting: appwrite/appwrite [full_rewrite]
-[2026-05-31 19:05:59] ============================================================
-[2026-05-31 19:05:59]   → code frequency ...
-[2026-05-31 19:05:59]   [HTTP 422] https://api.github.com/repos/appwrite/appwrite/stats/code_frequency
-[2026-05-31 19:05:59]   → commits + authors ...
-[2026-05-31 19:06:09]    2023-Q1:   758 commits,  23 authors
-[2026-05-31 19:06:21]    2023-Q2:   805 commits,  24 authors
-[2026-05-31 19:06:40]    2023-Q3:  1425 commits,  29 authors
-[2026-05-31 19:06:55]    2023-Q4:  1201 commits,  29 authors
-[2026-05-31 19:07:17]    2024-Q1:  1635 commits,  25 authors
-[2026-05-31 19:07:32]    2024-Q2:  1122 commits,  27 authors
-[2026-05-31 19:07:49]    2024-Q3:  1255 commits,  20 authors
-[2026-05-31 19:08:04]    2024-Q4:  1151 commits,  20 authors
-[2026-05-31 19:08:26]    2025-Q1:  1802 commits,  18 authors
-[2026-05-31 19:08:48]    2025-Q2:  1792 commits,  20 authors
-[2026-05-31 19:09:10]    2025-Q3:  1615 commits,  28 authors
-[2026-05-31 19:09:31]    2025-Q4:  1667 commits,  25 authors
-[2026-05-31 19:09:31]   → closed PRs ...
-[2026-05-31 19:10:59]   → issues ...
-[2026-05-31 19:12:19]   ✓ appwrite/appwrite done — 12 quarter rows written
-[2026-05-31 19:12:19] 
+[2026-07-05 22:47:23] Collecting: appwrite/appwrite [full_rewrite]
+[2026-07-05 22:47:23] ============================================================
+[2026-07-05 22:47:23]   → commits + authors ...
+[2026-07-05 22:47:33]    2023-Q1:   758 human commits (+0 bot),  23 authors
+[2026-07-05 22:47:44]    2023-Q2:   805 human commits (+0 bot),  24 authors
+[2026-07-05 22:48:02]    2023-Q3:  1425 human commits (+0 bot),  29 authors
+[2026-07-05 22:48:17]    2023-Q4:  1201 human commits (+0 bot),  29 authors
+[2026-07-05 22:48:37]    2024-Q1:  1635 human commits (+0 bot),  25 authors
+[2026-07-05 22:48:44]   ✓ appwrite/appwrite done — 12 new quarter rows written (0 already had)
+[2026-07-05 22:48:44] 
 ============================================================
-[2026-05-31 19:12:19] Collecting: airbytehq/airbyte [migration]
-[2026-05-31 19:12:19] ============================================================
-[2026-05-31 19:12:19]   → code frequency ...
-[2026-05-31 19:12:20]   [HTTP 422] https://api.github.com/repos/airbytehq/airbyte/stats/code_frequency
-[2026-05-31 19:12:20]   → commits + authors ...
-[2026-05-31 19:12:40]    2023-Q1:  1402 commits, 163 authors
-[2026-05-31 19:12:56]    2023-Q2:  1126 commits, 146 authors
-[2026-05-31 19:13:13]    2023-Q3:  1133 commits, 117 authors
-[2026-05-31 19:13:28]    2023-Q4:  1080 commits, 108 authors
-[2026-05-31 19:13:43]    2024-Q1:  1173 commits, 100 authors
-[2026-05-31 19:14:13]    2024-Q2:  2199 commits, 119 authors
-[2026-05-31 19:15:07]    2024-Q3:  4271 commits, 120 authors
-[2026-05-31 19:15:54]    2024-Q4:  3502 commits,  97 authors
-[2026-05-31 19:17:05]    2025-Q1:  5351 commits, 129 authors
-[2026-05-31 19:18:08]    2025-Q2:  4656 commits,  97 authors
-[2026-05-31 19:18:58]    2025-Q3:  3753 commits,  89 authors
-[2026-05-31 19:19:41]    2025-Q4:  3073 commits,  53 authors
-[2026-05-31 19:19:41]   → closed PRs ...
-[2026-05-31 19:36:19]   → issues ...
-[2026-05-31 19:45:38]   ✓ airbytehq/airbyte done — 12 quarter rows written
-[2026-05-31 19:45:38] 
+[2026-07-05 22:48:44] Collecting: airbytehq/airbyte [migration]
+[2026-07-05 22:48:44] ============================================================
+[2026-07-05 22:48:44]   → commits + authors ...
+[2026-07-05 22:48:50]    2024-Q2:  1122 human commits (+0 bot),  27 authors
+[2026-07-05 22:49:07]    2024-Q3:  1255 human commits (+0 bot),  20 authors
+[2026-07-05 22:49:07]    2023-Q1:  1401 human commits (+1 bot), 162 authors
+[2026-07-05 22:49:21]    2024-Q4:  1151 human commits (+0 bot),  20 authors
+[2026-07-05 22:49:26]    2023-Q2:  1126 human commits (+0 bot), 146 authors
+[2026-07-05 22:49:44]    2025-Q1:  1802 human commits (+0 bot),  18 authors
+[2026-07-05 22:49:44]    2023-Q3:  1133 human commits (+0 bot), 117 authors
+[2026-07-05 22:50:00]    2023-Q4:  1080 human commits (+0 bot), 108 authors
+[2026-07-05 22:50:05]    2025-Q2:  1792 human commits (+0 bot),  20 authors
+[2026-07-05 22:50:18]    2024-Q1:  1167 human commits (+6 bot),  99 authors
+[2026-07-05 22:50:25]    2025-Q3:  1615 human commits (+0 bot),  28 authors
+[2026-07-05 22:50:26] Checkpoint loaded: 60 (repo, quarter) pairs already saved (5 repos fully complete)
+[2026-07-05 22:50:26] Skipping PostHog/posthog (all 12 quarters already collected)
+[2026-07-05 22:50:26] Skipping Infisical/infisical (all 12 quarters already collected)
+[2026-07-05 22:50:26] Skipping dagger/dagger (all 12 quarters already collected)
+[2026-07-05 22:50:26] Skipping triggerdotdev/trigger.dev (all 12 quarters already collected)
+[2026-07-05 22:50:26] Skipping appwrite/appwrite (all 12 quarters already collected)
+[2026-07-05 22:50:26] 
 ============================================================
-[2026-05-31 19:45:38] Collecting: zed-industries/zed [transition]
-[2026-05-31 19:45:38] ============================================================
-[2026-05-31 19:45:38]   → code frequency ...
-[2026-05-31 19:45:38]   [HTTP 422] https://api.github.com/repos/zed-industries/zed/stats/code_frequency
-[2026-05-31 19:45:38]   → commits + authors ...
-[2026-05-31 19:45:55]    2023-Q1:  1194 commits,   9 authors
-[2026-05-31 19:46:20]    2023-Q2:  1896 commits,  14 authors
-[2026-05-31 19:46:47]    2023-Q3:  2132 commits,  16 authors
-[2026-05-31 19:47:35]    2023-Q4:  3784 commits,  13 authors
-[2026-05-31 19:48:14]    2024-Q1:  2647 commits, 233 authors
-[2026-05-31 19:48:38]    2024-Q2:  1590 commits, 203 authors
-[2026-05-31 19:49:11]    2024-Q3:  1988 commits, 258 authors
-[2026-05-31 19:49:36]    2024-Q4:  1608 commits, 204 authors
-[2026-05-31 19:50:14]    2025-Q1:  2472 commits, 215 authors
-[2026-05-31 19:50:55]    2025-Q2:  2631 commits, 254 authors
-[2026-05-31 19:51:30]    2025-Q3:  2278 commits, 262 authors
-[2026-05-31 19:52:06]    2025-Q4:  2388 commits, 370 authors
-[2026-05-31 19:52:06]   → closed PRs ...
-[2026-05-31 20:02:08]   → issues ...
-[2026-05-31 20:07:37]   ✓ zed-industries/zed done — 12 quarter rows written
-[2026-05-31 20:07:37] 
+[2026-07-05 22:50:26] Collecting: airbytehq/airbyte [migration]
+[2026-07-05 22:50:26] ============================================================
+[2026-07-05 22:50:26]   → commits + authors ...
+[2026-07-05 22:50:45]    2023-Q1:  1401 human commits (+1 bot), 162 authors
+[2026-07-05 22:50:46]    2025-Q4:  1667 human commits (+0 bot),  25 authors
+[2026-07-05 22:50:46]   → closed PRs ...
+[2026-07-05 22:50:52]    2024-Q2:  2196 human commits (+3 bot), 118 authors
+[2026-07-05 22:51:24] Checkpoint loaded: 60 (repo, quarter) pairs already saved (5 repos fully complete)
+[2026-07-05 22:51:24] Skipping PostHog/posthog (all 12 quarters already collected)
+[2026-07-05 22:51:24] Skipping Infisical/infisical (all 12 quarters already collected)
+[2026-07-05 22:51:24] Skipping dagger/dagger (all 12 quarters already collected)
+[2026-07-05 22:51:24] Skipping triggerdotdev/trigger.dev (all 12 quarters already collected)
+[2026-07-05 22:51:24] Skipping appwrite/appwrite (all 12 quarters already collected)
+[2026-07-05 22:51:24] 
 ============================================================
-[2026-05-31 20:07:37] Collecting: LedgerHQ/ledger-live [migration]
-[2026-05-31 20:07:37] ============================================================
-[2026-05-31 20:07:37]   → code frequency ...
-[2026-05-31 20:07:37]   [HTTP 422] https://api.github.com/repos/LedgerHQ/ledger-live/stats/code_frequency
-[2026-05-31 20:07:37]   → commits + authors ...
-[2026-05-31 20:07:51]    2023-Q1:  1066 commits,  57 authors
-[2026-05-31 20:08:06]    2023-Q2:  1042 commits,  60 authors
-[2026-05-31 20:08:23]    2023-Q3:  1316 commits,  56 authors
-[2026-05-31 20:08:37]    2023-Q4:  1189 commits,  52 authors
-[2026-05-31 20:08:53]    2024-Q1:  1357 commits,  55 authors
-[2026-05-31 20:09:10]    2024-Q2:  1282 commits,  54 authors
-[2026-05-31 20:09:27]    2024-Q3:  1222 commits,  59 authors
-[2026-05-31 20:09:47]    2024-Q4:  1582 commits,  56 authors
-[2026-05-31 20:10:13]    2025-Q1:  1934 commits,  75 authors
-[2026-05-31 20:10:44]    2025-Q2:  2066 commits,  72 authors
-[2026-05-31 20:11:24]    2025-Q3:  2838 commits,  76 authors
-[2026-05-31 20:12:05]    2025-Q4:  2990 commits,  78 authors
-[2026-05-31 20:12:05]   → closed PRs ...
-[2026-05-31 20:17:50]   → issues ...
-[2026-05-31 20:20:19]   ✓ LedgerHQ/ledger-live done — 12 quarter rows written
-[2026-05-31 20:20:19] 
+[2026-07-05 22:51:24] Collecting: airbytehq/airbyte [migration]
+[2026-07-05 22:51:24] ============================================================
+[2026-07-05 22:51:24]   → commits + authors ...
+[2026-07-05 22:51:43]    2023-Q1:  1401 human commits (+1 bot), 162 authors
+[2026-07-05 22:51:58]    2023-Q2:  1126 human commits (+0 bot), 146 authors
+[2026-07-05 22:52:13]    2023-Q3:  1133 human commits (+0 bot), 117 authors
+[2026-07-05 22:52:28]    2023-Q4:  1080 human commits (+0 bot), 108 authors
+[2026-07-05 22:52:43]    2024-Q1:  1167 human commits (+6 bot),  99 authors
+[2026-07-05 22:53:12]    2024-Q2:  2196 human commits (+3 bot), 118 authors
+[2026-07-05 22:54:22]    2024-Q3:  4270 human commits (+1 bot), 119 authors
+[2026-07-05 22:55:18]    2024-Q4:  3486 human commits (+16 bot),  95 authors
+[2026-07-05 22:55:28] Checkpoint loaded: 60 (repo, quarter) pairs already saved (5 repos fully complete)
+[2026-07-05 22:55:28] Skipping PostHog/posthog (all 12 quarters already collected)
+[2026-07-05 22:55:28] Skipping Infisical/infisical (all 12 quarters already collected)
+[2026-07-05 22:55:28] Skipping dagger/dagger (all 12 quarters already collected)
+[2026-07-05 22:55:28] Skipping triggerdotdev/trigger.dev (all 12 quarters already collected)
+[2026-07-05 22:55:28] Skipping appwrite/appwrite (all 12 quarters already collected)
+[2026-07-05 22:55:28] 
 ============================================================
-[2026-05-31 20:20:19] Collecting: weaviate/weaviate [migration]
-[2026-05-31 20:20:19] ============================================================
-[2026-05-31 20:20:19]   → code frequency ...
-[2026-05-31 20:20:20]   [HTTP 422] https://api.github.com/repos/weaviate/weaviate/stats/code_frequency
-[2026-05-31 20:20:20]   → commits + authors ...
-[2026-05-31 20:20:31]    2023-Q1:   804 commits,  23 authors
-[2026-05-31 20:20:41]    2023-Q2:   609 commits,  25 authors
-[2026-05-31 20:20:50]    2023-Q3:   712 commits,  25 authors
-[2026-05-31 20:21:00]    2023-Q4:   735 commits,  22 authors
-[2026-05-31 20:21:11]    2024-Q1:   845 commits,  31 authors
-[2026-05-31 20:21:29]    2024-Q2:  1302 commits,  32 authors
-[2026-05-31 20:21:47]    2024-Q3:  1429 commits,  36 authors
-[2026-05-31 20:22:13]    2024-Q4:  1971 commits,  33 authors
-[2026-05-31 20:22:41]    2025-Q1:  2028 commits,  36 authors
-[2026-05-31 20:23:04]    2025-Q2:  1730 commits,  36 authors
-[2026-05-31 20:23:25]    2025-Q3:  1520 commits,  27 authors
-[2026-05-31 20:23:47]    2025-Q4:  1565 commits,  28 authors
-[2026-05-31 20:23:47]   → closed PRs ...
-[2026-05-31 20:26:10]   → issues ...
-[2026-05-31 20:27:21]   ✓ weaviate/weaviate done — 12 quarter rows written
-[2026-05-31 20:27:21] 
+[2026-07-05 22:55:28] Collecting: airbytehq/airbyte [migration]
+[2026-07-05 22:55:28] ============================================================
+[2026-07-05 22:55:28]   → commits + authors ...
+[2026-07-05 22:55:46]    2023-Q1:  1401 human commits (+1 bot), 162 authors
+[2026-07-05 22:56:01]    2023-Q2:  1126 human commits (+0 bot), 146 authors
+[2026-07-05 22:56:17]    2023-Q3:  1133 human commits (+0 bot), 117 authors
+[2026-07-05 22:56:31]    2023-Q4:  1080 human commits (+0 bot), 108 authors
+[2026-07-05 22:56:46]    2024-Q1:  1167 human commits (+6 bot),  99 authors
+[2026-07-05 22:57:13]    2024-Q2:  2196 human commits (+3 bot), 118 authors
+[2026-07-05 22:58:06]    2024-Q3:  4270 human commits (+1 bot), 119 authors
+[2026-07-05 22:58:50]    2024-Q4:  3486 human commits (+16 bot),  95 authors
+[2026-07-05 22:59:59]    2025-Q1:  5294 human commits (+57 bot), 126 authors
+[2026-07-05 23:01:15]    2025-Q2:  4602 human commits (+54 bot),  94 authors
+[2026-07-05 23:02:13]    2025-Q3:  3219 human commits (+534 bot),  86 authors
+[2026-07-05 23:03:03]    2025-Q4:   411 human commits (+2662 bot),  50 authors
+[2026-07-05 23:03:03]   → closed PRs ...
+[2026-07-05 23:21:36]   → issues ...
+[2026-07-05 23:37:51]   ✓ airbytehq/airbyte done — 12 new quarter rows written (0 already had)
+[2026-07-05 23:37:51] 
 ============================================================
-[2026-05-31 20:27:21] Collecting: astral-sh/ruff [full_rewrite]
-[2026-05-31 20:27:21] ============================================================
-[2026-05-31 20:27:21]   → code frequency ...
-[2026-05-31 20:27:21]   [HTTP 422] https://api.github.com/repos/astral-sh/ruff/stats/code_frequency
-[2026-05-31 20:27:21]   → commits + authors ...
-[2026-05-31 20:27:42]    2023-Q1:  1585 commits, 122 authors
-[2026-05-31 20:27:56]    2023-Q2:   932 commits,  82 authors
-[2026-05-31 20:28:14]    2023-Q3:  1256 commits,  73 authors
-[2026-05-31 20:28:27]    2023-Q4:   800 commits, 104 authors
-[2026-05-31 20:28:38]    2024-Q1:   616 commits,  94 authors
-[2026-05-31 20:28:49]    2024-Q2:   711 commits,  88 authors
-[2026-05-31 20:29:01]    2024-Q3:   772 commits,  88 authors
-[2026-05-31 20:29:14]    2024-Q4:   867 commits,  87 authors
-[2026-05-31 20:29:30]    2025-Q1:  1057 commits,  74 authors
-[2026-05-31 20:29:48]    2025-Q2:  1254 commits, 101 authors
-[2026-05-31 20:30:04]    2025-Q3:  1063 commits,  94 authors
-[2026-05-31 20:30:21]    2025-Q4:  1106 commits,  88 authors
-[2026-05-31 20:30:21]   → closed PRs ...
-[2026-05-31 20:36:01]   → issues ...
-[2026-05-31 20:39:32]   ✓ astral-sh/ruff done — 12 quarter rows written
-[2026-05-31 20:39:32] 
+[2026-07-05 23:37:51] Collecting: zed-industries/zed [transition]
+[2026-07-05 23:37:51] ============================================================
+[2026-07-05 23:37:51]   → commits + authors ...
+[2026-07-05 23:38:09]    2023-Q1:  1194 human commits (+0 bot),   9 authors
+[2026-07-05 23:38:36]    2023-Q2:  1896 human commits (+0 bot),  14 authors
+[2026-07-05 23:39:06]    2023-Q3:  2132 human commits (+0 bot),  16 authors
+[2026-07-05 23:39:59]    2023-Q4:  3784 human commits (+0 bot),  13 authors
+[2026-07-05 23:40:42]    2024-Q1:  2647 human commits (+0 bot), 233 authors
+[2026-07-05 23:41:09]    2024-Q2:  1590 human commits (+0 bot), 203 authors
+[2026-07-05 23:41:43]    2024-Q3:  1889 human commits (+99 bot), 257 authors
+[2026-07-05 23:42:13]    2024-Q4:  1513 human commits (+95 bot), 203 authors
+[2026-07-05 23:42:56]    2025-Q1:  2332 human commits (+140 bot), 214 authors
+[2026-07-05 23:43:42]    2025-Q2:  2615 human commits (+16 bot), 253 authors
+[2026-07-05 23:44:21]    2025-Q3:  2277 human commits (+1 bot), 261 authors
+[2026-07-05 23:45:04]    2025-Q4:  2388 human commits (+0 bot), 370 authors
+[2026-07-05 23:45:04]   → closed PRs ...
+[2026-07-05 23:56:10]   → issues ...
+[2026-07-06 00:07:59]   ✓ zed-industries/zed done — 12 new quarter rows written (0 already had)
+[2026-07-06 00:07:59] 
 ============================================================
-[2026-05-31 20:39:32] Collecting: inngest/inngest [full_rewrite]
-[2026-05-31 20:39:32] ============================================================
-[2026-05-31 20:39:32]   → code frequency ...
-[2026-05-31 20:39:33]   [code_freq] unexpected response: {}
-[2026-05-31 20:39:33]   → commits + authors ...
-[2026-05-31 20:39:37]    2023-Q1:   312 commits,   7 authors
-[2026-05-31 20:39:40]    2023-Q2:   211 commits,   8 authors
-[2026-05-31 20:39:44]    2023-Q3:   284 commits,  10 authors
-[2026-05-31 20:39:50]    2023-Q4:   427 commits,  11 authors
-[2026-05-31 20:39:55]    2024-Q1:   411 commits,  10 authors
-[2026-05-31 20:39:58]    2024-Q2:   247 commits,  11 authors
-[2026-05-31 20:40:02]    2024-Q3:   249 commits,  10 authors
-[2026-05-31 20:40:04]    2024-Q4:   190 commits,  13 authors
-[2026-05-31 20:40:08]    2025-Q1:   225 commits,  11 authors
-[2026-05-31 20:40:12]    2025-Q2:   297 commits,  15 authors
-[2026-05-31 20:40:17]    2025-Q3:   364 commits,  19 authors
-[2026-05-31 20:40:22]    2025-Q4:   345 commits,  23 authors
-[2026-05-31 20:40:22]   → closed PRs ...
-[2026-05-31 20:41:28]   → issues ...
-[2026-05-31 20:41:55]   ✓ inngest/inngest done — 12 quarter rows written
-[2026-05-31 20:41:55] 
+[2026-07-06 00:07:59] Collecting: LedgerHQ/ledger-live [migration]
+[2026-07-06 00:07:59] ============================================================
+[2026-07-06 00:07:59]   → commits + authors ...
+[2026-07-06 00:08:15]    2023-Q1:  1056 human commits (+10 bot),  56 authors
+[2026-07-06 00:08:31]    2023-Q2:   945 human commits (+97 bot),  57 authors
+[2026-07-06 00:08:52]    2023-Q3:  1151 human commits (+165 bot),  54 authors
+[2026-07-06 00:09:10]    2023-Q4:  1092 human commits (+97 bot),  50 authors
+[2026-07-06 00:09:30]    2024-Q1:  1290 human commits (+67 bot),  53 authors
+[2026-07-06 00:09:47]    2024-Q2:  1190 human commits (+92 bot),  52 authors
+[2026-07-06 00:10:05]    2024-Q3:  1155 human commits (+67 bot),  57 authors
+[2026-07-06 00:10:31]    2024-Q4:  1470 human commits (+112 bot),  54 authors
+[2026-07-06 00:11:02]    2025-Q1:  1663 human commits (+271 bot),  71 authors
+[2026-07-06 00:11:36]    2025-Q2:  1777 human commits (+289 bot),  68 authors
+[2026-07-06 00:12:21]    2025-Q3:  2546 human commits (+292 bot),  72 authors
+[2026-07-06 00:13:10]    2025-Q4:  2721 human commits (+269 bot),  73 authors
+[2026-07-06 00:13:10]   → closed PRs ...
+[2026-07-06 00:19:32]   → issues ...
+[2026-07-06 00:23:17]   ✓ LedgerHQ/ledger-live done — 12 new quarter rows written (0 already had)
+[2026-07-06 00:23:17] 
 ============================================================
-[2026-05-31 20:41:55] Collecting: milvus-io/milvus [full_rewrite]
-[2026-05-31 20:41:55] ============================================================
-[2026-05-31 20:41:55]   → code frequency ...
-[2026-05-31 20:41:55]   [HTTP 422] https://api.github.com/repos/milvus-io/milvus/stats/code_frequency
-[2026-05-31 20:41:55]   → commits + authors ...
-[2026-05-31 20:42:03]    2023-Q1:   502 commits,  40 authors
-[2026-05-31 20:42:11]    2023-Q2:   602 commits,  48 authors
-[2026-05-31 20:42:21]    2023-Q3:   700 commits,  45 authors
-[2026-05-31 20:42:31]    2023-Q4:   646 commits,  47 authors
-[2026-05-31 20:42:40]    2024-Q1:   688 commits,  44 authors
-[2026-05-31 20:42:51]    2024-Q2:   733 commits,  51 authors
-[2026-05-31 20:43:01]    2024-Q3:   685 commits,  56 authors
-[2026-05-31 20:43:12]    2024-Q4:   704 commits,  51 authors
-[2026-05-31 20:43:19]    2025-Q1:   518 commits,  51 authors
-[2026-05-31 20:43:28]    2025-Q2:   554 commits,  47 authors
-[2026-05-31 20:43:37]    2025-Q3:   584 commits,  51 authors
-[2026-05-31 20:43:44]    2025-Q4:   572 commits,  49 authors
-[2026-05-31 20:43:44]   → closed PRs ...
-[2026-05-31 20:49:59]   → issues ...
-[2026-05-31 20:54:46]   ✓ milvus-io/milvus done — 12 quarter rows written
-[2026-05-31 20:54:46] 
+[2026-07-06 00:23:17] Collecting: weaviate/weaviate [migration]
+[2026-07-06 00:23:17] ============================================================
+[2026-07-06 00:23:17]   → commits + authors ...
+[2026-07-06 00:23:29]    2023-Q1:   797 human commits (+7 bot),  22 authors
+[2026-07-06 00:23:39]    2023-Q2:   603 human commits (+6 bot),  24 authors
+[2026-07-06 00:23:49]    2023-Q3:   705 human commits (+7 bot),  24 authors
+[2026-07-06 00:24:01]    2023-Q4:   720 human commits (+15 bot),  21 authors
+[2026-07-06 00:24:13]    2024-Q1:   833 human commits (+12 bot),  30 authors
+[2026-07-06 00:24:33]    2024-Q2:  1292 human commits (+10 bot),  31 authors
+[2026-07-06 00:24:56]    2024-Q3:  1426 human commits (+3 bot),  35 authors
+[2026-07-06 00:25:24]    2024-Q4:  1950 human commits (+21 bot),  32 authors
+[2026-07-06 00:26:01]    2025-Q1:  1990 human commits (+38 bot),  35 authors
+[2026-07-06 00:26:28]    2025-Q2:  1726 human commits (+4 bot),  35 authors
+[2026-07-06 00:26:52]    2025-Q3:  1505 human commits (+15 bot),  26 authors
+[2026-07-06 00:27:16]    2025-Q4:  1548 human commits (+22 bot),  27 authors
+[2026-07-06 00:27:16]   → closed PRs ...
+[2026-07-06 00:30:05]   → issues ...
+[2026-07-06 00:32:20]   ✓ weaviate/weaviate done — 12 new quarter rows written (0 already had)
+[2026-07-06 00:32:20] 
 ============================================================
-[2026-05-31 20:54:46] Collecting: tursodatabase/libsql [pivot]
-[2026-05-31 20:54:46] ============================================================
-[2026-05-31 20:54:46]   → code frequency ...
-[2026-05-31 20:54:46]   [HTTP 422] https://api.github.com/repos/tursodatabase/libsql/stats/code_frequency
-[2026-05-31 20:54:46]   → commits + authors ...
-[2026-05-31 20:54:59]    2023-Q1:  1129 commits,  24 authors
-[2026-05-31 20:55:06]    2023-Q2:   665 commits,  28 authors
-[2026-05-31 20:55:23]    2023-Q3:  1495 commits,  26 authors
-[2026-05-31 20:55:41]    2023-Q4:  1525 commits,  33 authors
-[2026-05-31 20:55:51]    2024-Q1:   841 commits,  28 authors
-[2026-05-31 20:55:56]    2024-Q2:   392 commits,  28 authors
-[2026-05-31 20:56:09]    2024-Q3:  1143 commits,  28 authors
-[2026-05-31 20:56:13]    2024-Q4:   307 commits,  12 authors
-[2026-05-31 20:56:15]    2025-Q1:   138 commits,  12 authors
-[2026-05-31 20:56:16]    2025-Q2:    93 commits,  13 authors
-[2026-05-31 20:56:17]    2025-Q3:    95 commits,  10 authors
-[2026-05-31 20:56:18]    2025-Q4:    56 commits,  13 authors
-[2026-05-31 20:56:18]   → closed PRs ...
-[2026-05-31 20:56:44]   → issues ...
-[2026-05-31 20:57:10]   ✓ tursodatabase/libsql done — 12 quarter rows written
-[2026-05-31 20:57:10] 
+[2026-07-06 00:32:20] Collecting: astral-sh/ruff [full_rewrite]
+[2026-07-06 00:32:20] ============================================================
+[2026-07-06 00:32:20]   → commits + authors ...
+[2026-07-06 00:32:42]    2023-Q1:  1585 human commits (+0 bot), 122 authors
+[2026-07-06 00:32:56]    2023-Q2:   931 human commits (+1 bot),  81 authors
+[2026-07-06 00:33:15]    2023-Q3:  1218 human commits (+38 bot),  72 authors
+[2026-07-06 00:33:27]    2023-Q4:   722 human commits (+78 bot), 103 authors
+[2026-07-06 00:33:38]    2024-Q1:   540 human commits (+76 bot),  92 authors
+[2026-07-06 00:33:50]    2024-Q2:   587 human commits (+124 bot),  86 authors
+[2026-07-06 00:34:02]    2024-Q3:   622 human commits (+150 bot),  86 authors
+[2026-07-06 00:34:15]    2024-Q4:   712 human commits (+155 bot),  85 authors
+[2026-07-06 00:34:33]    2025-Q1:   910 human commits (+147 bot),  72 authors
+[2026-07-06 00:34:52]    2025-Q2:  1097 human commits (+157 bot),  99 authors
+[2026-07-06 00:35:09]    2025-Q3:   918 human commits (+145 bot),  92 authors
+[2026-07-06 00:35:26]    2025-Q4:   967 human commits (+139 bot),  86 authors
+[2026-07-06 00:35:26]   → closed PRs ...
+[2026-07-06 00:41:41]   → issues ...
+[2026-07-06 00:47:52]   ✓ astral-sh/ruff done — 12 new quarter rows written (0 already had)
+[2026-07-06 00:47:52] 
 ============================================================
-[2026-05-31 20:57:10] Collecting: qdrant/qdrant [fuzzy]
-[2026-05-31 20:57:10] ============================================================
-[2026-05-31 20:57:10]   → code frequency ...
-[2026-05-31 20:57:11]   [code_freq] unexpected response: {}
-[2026-05-31 20:57:11]   → commits + authors ...
-[2026-05-31 20:57:12]    2023-Q1:   172 commits,  14 authors
-[2026-05-31 20:57:17]    2023-Q2:   312 commits,  30 authors
-[2026-05-31 20:57:21]    2023-Q3:   271 commits,  18 authors
-[2026-05-31 20:57:25]    2023-Q4:   348 commits,  23 authors
-[2026-05-31 20:57:30]    2024-Q1:   325 commits,  28 authors
-[2026-05-31 20:57:36]    2024-Q2:   472 commits,  22 authors
-[2026-05-31 20:57:41]    2024-Q3:   352 commits,  23 authors
-[2026-05-31 20:57:46]    2024-Q4:   331 commits,  19 authors
-[2026-05-31 20:57:53]    2025-Q1:   467 commits,  19 authors
-[2026-05-31 20:57:55]    2025-Q2:   206 commits,  14 authors
-[2026-05-31 20:58:01]    2025-Q3:   492 commits,  26 authors
-[2026-05-31 20:58:07]    2025-Q4:   331 commits,  17 authors
-[2026-05-31 20:58:07]   → closed PRs ...
-[2026-05-31 20:59:57]   → issues ...
-[2026-05-31 21:01:03]   ✓ qdrant/qdrant done — 12 quarter rows written
-[2026-05-31 21:01:03] 
+[2026-07-06 00:47:52] Collecting: inngest/inngest [full_rewrite]
+[2026-07-06 00:47:52] ============================================================
+[2026-07-06 00:47:52]   → commits + authors ...
+[2026-07-06 00:47:57]    2023-Q1:   311 human commits (+1 bot),   6 authors
+[2026-07-06 00:48:00]    2023-Q2:   211 human commits (+0 bot),   8 authors
+[2026-07-06 00:48:05]    2023-Q3:   283 human commits (+1 bot),   9 authors
+[2026-07-06 00:48:13]    2023-Q4:   420 human commits (+7 bot),  10 authors
+[2026-07-06 00:48:21]    2024-Q1:   411 human commits (+0 bot),  10 authors
+[2026-07-06 00:48:26]    2024-Q2:   246 human commits (+1 bot),  10 authors
+[2026-07-06 00:48:30]    2024-Q3:   248 human commits (+1 bot),   9 authors
+[2026-07-06 00:48:33]    2024-Q4:   189 human commits (+1 bot),  12 authors
+[2026-07-06 00:48:37]    2025-Q1:   219 human commits (+6 bot),  10 authors
+[2026-07-06 00:48:43]    2025-Q2:   290 human commits (+7 bot),  14 authors
+[2026-07-06 00:48:49]    2025-Q3:   363 human commits (+1 bot),  18 authors
+[2026-07-06 00:48:54]    2025-Q4:   344 human commits (+1 bot),  22 authors
+[2026-07-06 00:48:54]   → closed PRs ...
+[2026-07-06 00:50:20]   → issues ...
+[2026-07-06 00:51:18]   ✓ inngest/inngest done — 12 new quarter rows written (0 already had)
+[2026-07-06 00:51:18] 
+============================================================
+[2026-07-06 00:51:18] Collecting: milvus-io/milvus [full_rewrite]
+[2026-07-06 00:51:18] ============================================================
+[2026-07-06 00:51:18]   → commits + authors ...
+[2026-07-06 00:51:27]    2023-Q1:   502 human commits (+0 bot),  40 authors
+[2026-07-06 00:51:37]    2023-Q2:   598 human commits (+4 bot),  47 authors
+[2026-07-06 00:51:49]    2023-Q3:   700 human commits (+0 bot),  45 authors
+[2026-07-06 00:52:01]    2023-Q4:   643 human commits (+3 bot),  46 authors
+[2026-07-06 00:52:13]    2024-Q1:   688 human commits (+0 bot),  44 authors
+[2026-07-06 00:52:26]    2024-Q2:   733 human commits (+0 bot),  51 authors
+[2026-07-06 00:52:38]    2024-Q3:   685 human commits (+0 bot),  56 authors
+[2026-07-06 00:52:51]    2024-Q4:   704 human commits (+0 bot),  51 authors
+[2026-07-06 00:53:01]    2025-Q1:   517 human commits (+1 bot),  50 authors
+[2026-07-06 00:53:10]    2025-Q2:   554 human commits (+0 bot),  47 authors
+[2026-07-06 00:53:20]    2025-Q3:   583 human commits (+1 bot),  50 authors
+[2026-07-06 00:53:31]    2025-Q4:   572 human commits (+0 bot),  49 authors
+[2026-07-06 00:53:31]   → closed PRs ...
+[2026-07-06 01:01:02]   → issues ...
+[2026-07-06 01:08:48]   ✓ milvus-io/milvus done — 12 new quarter rows written (0 already had)
+[2026-07-06 01:08:48] 
+============================================================
+[2026-07-06 01:08:48] Collecting: tursodatabase/libsql [pivot]
+[2026-07-06 01:08:48] ============================================================
+[2026-07-06 01:08:48]   → commits + authors ...
+[2026-07-06 01:09:02]    2023-Q1:   927 human commits (+202 bot),  22 authors
+[2026-07-06 01:09:12]    2023-Q2:   631 human commits (+34 bot),  27 authors
+[2026-07-06 01:09:31]    2023-Q3:  1495 human commits (+0 bot),  26 authors
+[2026-07-06 01:09:53]    2023-Q4:  1525 human commits (+0 bot),  33 authors
+[2026-07-06 01:10:06]    2024-Q1:   841 human commits (+0 bot),  28 authors
+[2026-07-06 01:10:12]    2024-Q2:   392 human commits (+0 bot),  28 authors
+[2026-07-06 01:10:29]    2024-Q3:  1143 human commits (+0 bot),  28 authors
+[2026-07-06 01:10:34]    2024-Q4:   307 human commits (+0 bot),  12 authors
+[2026-07-06 01:10:36]    2025-Q1:   138 human commits (+0 bot),  12 authors
+[2026-07-06 01:10:37]    2025-Q2:    93 human commits (+0 bot),  13 authors
+[2026-07-06 01:10:39]    2025-Q3:    95 human commits (+0 bot),  10 authors
+[2026-07-06 01:10:40]    2025-Q4:    56 human commits (+0 bot),  13 authors
+[2026-07-06 01:10:40]   → closed PRs ...
+[2026-07-06 01:11:09]   → issues ...
+[2026-07-06 01:11:50]   ✓ tursodatabase/libsql done — 12 new quarter rows written (0 already had)
+[2026-07-06 01:11:50] 
+============================================================
+[2026-07-06 01:11:50] Collecting: qdrant/qdrant [fuzzy]
+[2026-07-06 01:11:50] ============================================================
+[2026-07-06 01:11:50]   → commits + authors ...
+[2026-07-06 01:11:53]    2023-Q1:   101 human commits (+71 bot),  12 authors
+[2026-07-06 01:11:58]    2023-Q2:   210 human commits (+102 bot),  28 authors
+[2026-07-06 01:12:02]    2023-Q3:   156 human commits (+115 bot),  17 authors
+[2026-07-06 01:12:07]    2023-Q4:   290 human commits (+58 bot),  22 authors
+[2026-07-06 01:12:13]    2024-Q1:   244 human commits (+81 bot),  27 authors
+[2026-07-06 01:12:22]    2024-Q2:   376 human commits (+96 bot),  21 authors
+[2026-07-06 01:12:28]    2024-Q3:   265 human commits (+87 bot),  22 authors
+[2026-07-06 01:12:34]    2024-Q4:   250 human commits (+81 bot),  18 authors
+[2026-07-06 01:12:42]    2025-Q1:   337 human commits (+130 bot),  18 authors
+[2026-07-06 01:12:46]    2025-Q2:   156 human commits (+50 bot),  13 authors
+[2026-07-06 01:12:54]    2025-Q3:   369 human commits (+123 bot),  25 authors
+[2026-07-06 01:13:01]    2025-Q4:   265 human commits (+66 bot),  16 authors
+[2026-07-06 01:13:01]   → closed PRs ...
+[2026-07-06 01:15:31]   → issues ...
+[2026-07-06 01:17:28]   ✓ qdrant/qdrant done — 12 new quarter rows written (0 already had)
+[2026-07-06 01:17:28] 
 All done.
-[2026-05-31 21:01:03] Panel data:          C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_panel_data.csv
-[2026-05-31 21:01:03] Contributor history: C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_contributor_history.csv
-[2026-05-31 21:01:03] Log:                 C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_collection_log.txt
+[2026-07-06 01:17:28] Panel data:          C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_panel_data.csv
+[2026-07-06 01:17:28] Contributor history: C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_contributor_history.csv
+[2026-07-06 01:17:28] Log:                 C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_collection_log.txt

@@ -1,0 +1,71 @@
+[2026-07-05 21:42:50] === PostHog/posthog ===
+[2026-07-05 21:42:50]   cloning PostHog/posthog (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 21:55:02]   parsed 21980 in-panel commits
+[2026-07-05 21:55:03]   AI markers: CLAUDE.md@2025-Q1, .cursor/rules/django-python.mdc@2025-Q1, .cursor/rules/react-typescript.mdc@2025-Q1, .cursor/rules/rust.mdc@2025-Q1, .cursorrules@2025-Q1, .claude/agents/code-reviewer.md@2025-Q3
+[2026-07-05 21:55:03]   done: 12 quarters, 784 author-quarters, 42 AI markers
+[2026-07-05 21:55:03] === Infisical/infisical ===
+[2026-07-05 21:55:03]   cloning Infisical/infisical (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:02:13]   parsed 13052 in-panel commits
+[2026-07-05 22:02:14]   AI markers: CLAUDE.md@2026-Q1, AGENTS.md@2026-Q2
+[2026-07-05 22:02:14]   done: 12 quarters, 337 author-quarters, 2 AI markers
+[2026-07-05 22:02:14] === dagger/dagger ===
+[2026-07-05 22:02:14]   cloning dagger/dagger (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:03:40]   parsed 4724 in-panel commits
+[2026-07-05 22:03:40]   AI markers: .claude/skills@2026-Q1, AGENTS.md@2026-Q2
+[2026-07-05 22:03:40]   done: 12 quarters, 450 author-quarters, 2 AI markers
+[2026-07-05 22:03:40] === triggerdotdev/trigger.dev ===
+[2026-07-05 22:03:40]   cloning triggerdotdev/trigger.dev (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:05:13]   parsed 6017 in-panel commits
+[2026-07-05 22:05:14]   AI markers: .github/copilot-instructions.md@2024-Q4, .cursor/rules/executing-commands.mdc@2025-Q1, .cursor/rules/repo.mdc@2025-Q1, .cursor/rules/webapp.mdc@2025-Q1, .cursor/rules/writing-tests.mdc@2025-Q1, .cursor/rules/writing-tasks.mdc@2025-Q1
+[2026-07-05 22:05:14]   done: 12 quarters, 215 author-quarters, 29 AI markers
+[2026-07-05 22:05:14] === appwrite/appwrite ===
+[2026-07-05 22:05:14]   cloning appwrite/appwrite (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:07:41]   parsed 10908 in-panel commits
+[2026-07-05 22:07:41]   AI markers: AGENTS.md@2025-Q4, .claude/skills/pr-workflow.md@2026-Q1, CLAUDE.md@2026-Q1, .claude/skills/patch-release-checklist/SKILL.md@2026-Q2
+[2026-07-05 22:07:41]   done: 12 quarters, 316 author-quarters, 4 AI markers
+[2026-07-05 22:07:41] === airbytehq/airbyte ===
+[2026-07-05 22:07:41]   cloning airbytehq/airbyte (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:11:51]   parsed 32662 in-panel commits
+[2026-07-05 22:11:52]   AI markers: .claude/skills/my-prs/SKILL.md@2026-Q1, .claude/skills/my-prs/scripts/fetch-prs.sh@2026-Q1
+[2026-07-05 22:11:52]   done: 12 quarters, 1378 author-quarters, 2 AI markers
+[2026-07-05 22:11:52] === zed-industries/zed ===
+[2026-07-05 22:11:52]   cloning zed-industries/zed (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:14:13]   parsed 24111 in-panel commits
+[2026-07-05 22:14:14]   AI markers: .cursorrules@2025-Q2, .windsurfrules@2025-Q2, CLAUDE.md@2025-Q2, GEMINI.md@2025-Q4
+[2026-07-05 22:14:14]   done: 12 quarters, 2102 author-quarters, 4 AI markers
+[2026-07-05 22:14:14] === LedgerHQ/ledger-live ===
+[2026-07-05 22:14:14]   cloning LedgerHQ/ledger-live (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:20:48]   parsed 14761 in-panel commits
+[2026-07-05 22:20:49]   AI markers: .cursorrules@2025-Q4, .cursor/rules/git-workflow.mdc@2025-Q4, .cursor/rules/ldls.mdc@2025-Q4, .cursor/rules/react-general.mdc@2025-Q4, .cursor/rules/react-new-arch.mdc@2025-Q4, .cursor/rules/testing.mdc@2025-Q4
+[2026-07-05 22:20:49]   done: 12 quarters, 849 author-quarters, 56 AI markers
+[2026-07-05 22:20:49] === weaviate/weaviate ===
+[2026-07-05 22:20:49]   cloning weaviate/weaviate (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:21:59]   parsed 9478 in-panel commits
+[2026-07-05 22:21:59]   AI markers: .claude/scripts/monitor_docker.sh@2026-Q1, .claude/scripts/monitor_pr.sh@2026-Q1, .claude/settings.json@2026-Q1, CLAUDE.md@2026-Q1
+[2026-07-05 22:21:59]   done: 12 quarters, 382 author-quarters, 4 AI markers
+[2026-07-05 22:21:59] === astral-sh/ruff ===
+[2026-07-05 22:21:59]   cloning astral-sh/ruff (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:22:59]   parsed 11404 in-panel commits
+[2026-07-05 22:22:59]   AI markers: CLAUDE.md@2026-Q1, .claude/hooks/session-start-web.sh@2026-Q1, .claude/hooks/session-start.sh@2026-Q1, .claude/settings.json@2026-Q1, AGENTS.md@2026-Q1
+[2026-07-05 22:22:59]   done: 12 quarters, 1108 author-quarters, 5 AI markers
+[2026-07-05 22:22:59] === inngest/inngest ===
+[2026-07-05 22:22:59]   cloning inngest/inngest (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:24:31]   parsed 3499 in-panel commits
+[2026-07-05 22:24:31]   AI markers: .github/copilot-instructions.md@2025-Q4, CLAUDE.md@2026-Q1, AGENTS.md@2026-Q2
+[2026-07-05 22:24:31]   done: 12 quarters, 160 author-quarters, 3 AI markers
+[2026-07-05 22:24:31] === milvus-io/milvus ===
+[2026-07-05 22:24:31]   cloning milvus-io/milvus (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:25:25]   parsed 7474 in-panel commits
+[2026-07-05 22:25:25]   AI markers: CLAUDE.md@2026-Q1, AGENTS.md@2026-Q2
+[2026-07-05 22:25:25]   done: 12 quarters, 610 author-quarters, 2 AI markers
+[2026-07-05 22:25:25] === tursodatabase/libsql ===
+[2026-07-05 22:25:25]   cloning tursodatabase/libsql (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:26:23]   parsed 6446 in-panel commits
+[2026-07-05 22:26:23]   AI markers: none found
+[2026-07-05 22:26:23]   done: 12 quarters, 266 author-quarters, 0 AI markers
+[2026-07-05 22:26:23] === qdrant/qdrant ===
+[2026-07-05 22:26:23]   cloning qdrant/qdrant (bare, --shallow-since=2022-10-01) ...
+[2026-07-05 22:26:42]   parsed 3750 in-panel commits
+[2026-07-05 22:26:42]   AI markers: none found
+[2026-07-05 22:26:42]   done: 12 quarters, 244 author-quarters, 0 AI markers
+[2026-07-05 22:26:42] All done.
