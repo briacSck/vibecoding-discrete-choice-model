@@ -1,0 +1,15 @@
+CQI first principal component (pooled pilot panel)
+variance share of PC1: 0.415
+
+  S_latency    +0.5695
+  S_refactor   +0.5360
+  S_churn      -0.4930
+  S_backlog    -0.3812
+
+signal coverage (non-missing flow shares):
+  f_latency    100.00%
+  f_refactor   100.00%
+  f_churn      100.00%
+  f_backlog    83.33%
+
+NOTE: test-coverage signal (paper signal 5) unavailable in pilot; CQI built on 4 signals.

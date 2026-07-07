@@ -1,0 +1,15 @@
+repo,event_type,event_name,event_quarter,dating_method,confidence,in_window,verified,notes
+PostHog/posthog,full_rewrite,AI architecture rebuilt (x2),,fuzzy,low,,0,No dated event found; candidate fuzzy treatment via peak refactor quarter; check PostHog blog for rebuild announcements
+Infisical/infisical,migration,MongoDB to PostgreSQL migration,2024-Q1,named_release,medium,1,0,Migration PRs cluster 2023-Q4 to 2024-Q1 in v1 panel; pin exact merge PR / blog date
+dagger/dagger,full_rewrite,Project Theseus engine rewrite,,named_release,low,,0,157 Theseus-labeled PRs per 04_top_candidates; pin quarter from those PR merge dates
+triggerdotdev/trigger.dev,full_rewrite,v3 rewrite,2024-Q2,named_release,medium,1,0,v3 public launch ~Apr 2024; verify release tag date
+appwrite/appwrite,full_rewrite,v2.0 execution engine rewrite,,right_censored,low,0,0,Right-censored; excluded from main spec per decision 4.6; partial-likelihood appendix only
+airbytehq/airbyte,migration,Python CDK v2,,named_release,low,,0,Pin from CDK v2 release notes / airbyte-cdk changelog
+zed-industries/zed,transition,Full OSS transition,2024-Q1,named_release,high,1,1,Announced 2024-01-24; pre-period left-censored (repo private before)
+LedgerHQ/ledger-live,migration,Monorepo to turborepo migration,,pre_window,medium,0,0,Migration likely 2022 = PRE-WINDOW; reclassify as control or drop as treated unit
+weaviate/weaviate,migration,Storage layer rewrite + gRPC client v4,2024-Q1,named_release,low,1,0,Python client v4 GA early 2024; storage rewrite date unconfirmed
+astral-sh/ruff,full_rewrite,Rust rewrites of Python tooling,,fuzzy,low,,0,Continuous greenfield rewriting; uv launch 2024-Q1; OpenAI acquisition ~2025 structural break to confirm
+inngest/inngest,full_rewrite,v1 to v2 SDK + execution model,,named_release,low,,0,SDK v2 ~mid-2023; pin release tag
+milvus-io/milvus,full_rewrite,v2.0 Python to Go+Rust rewrite,,pre_window,high,0,0,v2.0 GA June 2021 = PRE-WINDOW; event_type in panel is wrong for this window; reclassify as control/fuzzy
+tursodatabase/libsql,pivot,ChiselStrike to Turso pivot,2023-Q2,named_release,medium,1,0,Turso GA ~mid-2023; libsql fork Oct 2022; verify announcement date
+qdrant/qdrant,fuzzy,Iterative storage engine evolution,,peak_refactor,medium,1,0,Fuzzy by design; event quarter = peak refactor-PR quarter computed from panel
