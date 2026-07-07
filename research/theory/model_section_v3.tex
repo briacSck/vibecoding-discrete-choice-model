@@ -1,0 +1,435 @@
+% =========================================================================
+% model_section_v3.tex — Two-channel comparative statics + (S,s) extension
+%
+% DRAFT FOR PI LINE-BY-LINE VERIFICATION. Written 2026-07-07 to be \input
+% after "The Rust Model Applied to Codebase Decisions" in DRAFT_paper.tex
+% (notation matched: q_t state, a_t in {0,1}, c(q,theta_c)=theta_1 q +
+% theta_2 q^2, kappa rationalization cost, reset to q_0 + eta, discount
+% beta, T1EV shocks). New parameter: alpha = AI-assistance intensity.
+%
+% Integration notes:
+%  - Propositions use \newtheorem{proposition}{Proposition} and
+%    \newtheorem{remark}{Remark} — add to the preamble if not present.
+%  - Appendix proofs are at the bottom of this file inside
+%    \section*{Appendix ...}; move to the paper's appendix.
+%  - NEW CITATIONS in model_v3_new_refs.bib are UNVERIFIED — per project
+%    citation policy, verify each against the primary source before merging.
+%  - FORWARD REFERENCES that must exist in the rewritten draft:
+%    \label{sec:results}, \label{subsec:adoption_design},
+%    \label{fig:event_study_components} (11_event_study_components.png).
+%    \label{subsec:events} already exists in DRAFT_paper.tex.
+% =========================================================================
+
+\subsection{Comparative Statics: Two Channels of AI Adoption}
+\label{subsec:twochannel}
+
+AI-assisted development enters the model through two distinct structural
+objects. Let $\alpha \geq 0$ index the intensity of AI assistance in the
+firm's development process (Section~\ref{subsec:events} describes its
+empirical counterpart: configuration-artifact adoption dates and the share
+of AI co-authored commits).
+
+\begin{enumerate}
+    \item \textbf{Cost channel:} the rationalization cost falls,
+    $\kappa = \kappa(\alpha)$ with $\kappa'(\alpha) < 0$. AI agents execute
+    large, mechanical rewrites --- migrations, API-surface changes,
+    dependency upgrades --- at a fraction of their pre-AI engineering cost.
+    \item \textbf{Transition channel:} the codebase degrades faster under
+    continuation. Write the continuation transition as
+    $q_{t+1} \sim G_\alpha(\cdot \mid q_t)$, the distribution of
+    $q_t + \delta_d(q_t, \eta_t; \alpha)$, with $G_\alpha$ shifting toward
+    faster degradation as $\alpha$ rises: generation is fast but produces
+    inconsistent abstractions and redundant modules whose maintenance cost
+    compounds.
+\end{enumerate}
+
+For the comparative statics I suppress the Type-I extreme value shocks
+$\varepsilon_t$; with $\varepsilon$ the threshold policy below becomes a
+smooth cutoff in choice probabilities and all monotonicity statements apply
+to the choice-probability function instead (the logit CCPs inherit the
+monotonicity of the choice-specific value difference). Writing the problem
+in cost-minimization form, the value function satisfies
+\begin{equation}
+    V(q) \;=\; \min\Big\{
+        \underbrace{c(q,\theta_c) + \beta\, \mathbb{E}\big[V(q') \mid q,\, a=0\big]}_{\text{keep: } K(q)},\;\;
+        \underbrace{\kappa + \beta\, \mathbb{E}_\eta\big[V(q_0 + \eta)\big]}_{\text{rationalize: } R}
+    \Big\}.
+    \label{eq:bellman_costmin}
+\end{equation}
+The rationalization value $R$ is constant in $q$. Under Assumption A1 below,
+$K(q)$ is increasing in $q$, so the optimal policy is a threshold rule:
+rationalize if and only if $q \geq q^*$, where
+$q^* = \inf\{q : K(q) \geq R\}$ and $\Delta(q) \equiv K(q) - R$ is the
+choice-specific value difference.
+
+\paragraph{Assumptions.}
+\begin{itemize}
+    \item[\textbf{A1}] (\emph{Monotone degradation}) $c(\cdot,\theta_c)$ is
+    strictly increasing, and $G_\alpha(\cdot \mid q)$ is stochastically
+    increasing in $q$: a more degraded codebase today is (weakly) more
+    degraded tomorrow, state by state. This is the discrete-time analogue
+    of the convex degradation increment in Equation~\eqref{eq:transition}.
+    \item[\textbf{A2}] (\emph{State-dependent acceleration}) $G_\alpha(\cdot
+    \mid q)$ is stochastically increasing in $\alpha$, and the shift
+    satisfies increasing differences: for every increasing bounded $\phi$
+    and $q_H > q_L$,
+    \[
+        \mathbb{E}_{G_{\alpha}}[\phi \mid q_H] - \mathbb{E}_{G_{\alpha'}}[\phi \mid q_H]
+        \;\geq\;
+        \mathbb{E}_{G_{\alpha}}[\phi \mid q_L] - \mathbb{E}_{G_{\alpha'}}[\phi \mid q_L],
+        \qquad \alpha > \alpha'.
+    \]
+    AI-induced acceleration is stronger the more degraded the codebase ---
+    the compounding (``broken windows'') mechanism of
+    \citet{avgeriou2024}, with the convexity evidence of \citet{borg2024}
+    and the persistence of AI-introduced issues documented by
+    \citet{liu2026}. The post-reset innovation distribution of
+    $q_0 + \eta$ is unaffected by $\alpha$ (a fresh codebase carries no
+    AI-generated legacy debt at the reset instant).
+    \item[\textbf{A3}] (\emph{Regularity}) $c$ bounded on $\mathcal{Q}$,
+    $\beta \in (0,1)$, and the threshold is interior for the parameter
+    range considered.
+\end{itemize}
+
+\begin{proposition}[Cost channel]
+\label{prop:cost}
+Under A1 and A3, the replacement threshold $q^*(\kappa)$ is strictly
+increasing in $\kappa$. Hence AI adoption operating through the cost
+channel alone ($\kappa' (\alpha)< 0$, $G$ fixed) strictly lowers the
+threshold: firms rationalize at lower degradation levels, and the
+per-period rationalization hazard rises.
+\end{proposition}
+
+\noindent\emph{Proof sketch.} By the envelope theorem,
+$W(q) \equiv \partial V(q)/\partial \kappa$ equals the expected discounted
+number of future rationalizations under the optimal policy. The renewal
+structure of the problem --- after each rationalization the state
+regenerates from $q_0 + \eta$ regardless of history --- yields the identity
+$W(q) = m(q)\,\big(1 + B\big)$, where $m(q) \equiv \mathbb{E}_q[\beta^{\tau}]
+\in [0,1]$ is the expected discount factor to the \emph{first}
+rationalization from state $q$ and
+$B \equiv \beta\, \mathbb{E}_\eta[W(q_0+\eta)]$ is common to all states.
+Differentiating the value difference,
+\[
+    \frac{\partial \Delta(q)}{\partial \kappa}
+    = \beta\,\mathbb{E}\big[W(q') \mid q, a=0\big] - 1 - B
+    = \beta(1+B)\,\mathbb{E}\big[m(q') \mid q, a=0\big] - (1+B)
+    \;\leq\; -(1-\beta)(1+B) \;<\; 0,
+\]
+using $m \leq 1$. The value difference falls strictly and uniformly in
+$\kappa$, so the indifference point $q^*$ rises. The full argument,
+including the measurable-selection details behind the envelope step, is in
+Appendix~\ref{app:proofs}. \hfill$\square$
+
+\begin{proposition}[Transition channel]
+\label{prop:transition}
+Under A1--A3, the replacement threshold $q^*(\alpha)$ is nonincreasing in
+$\alpha$: state-dependent acceleration of degradation lowers the threshold
+and raises the rationalization hazard.
+\end{proposition}
+
+\noindent\emph{Proof sketch.} The argument is by induction on the value
+iteration $V^{n+1} = TV^n$: A1 guarantees each $V^n$ is increasing in $q$;
+A2 then implies that the continuation value of \emph{keeping} deteriorates
+with $\alpha$ faster at high $q$ than the (reset-anchored) rationalization
+value, so the value difference $\Delta(q; \alpha)$ has increasing
+differences in $(q, \alpha)$ at every iteration, a property preserved in
+the limit \citep[Topkis-style lattice argument;][]{rust1987}. Increasing
+differences of $\Delta$ delivers monotonicity of the indifference point.
+Details in Appendix~\ref{app:proofs}. \hfill$\square$
+
+\begin{remark}[The sign of the transition channel is state-dependence]
+\label{rem:uniform}
+A2 is substantive, not technical. If AI accelerated degradation
+\emph{uniformly} --- including immediately after a reset --- rationalization
+would buy a codebase that itself degrades faster, the option value of
+resetting would fall, and the threshold could remain unchanged or even
+rise. The transition channel lowers the threshold only insofar as AI-era
+degradation \emph{compounds on existing degradation}. This makes A2
+directly testable in the adoption design of
+Section~\ref{subsec:adoption_design}: the post-adoption shift in
+rationalization behavior should be increasing in the repository's
+pre-adoption CQI level.
+\end{remark}
+
+\subsection{Partial Rationalization: the $(S,s)$ Band and the
+Continuous-Maintenance Limit}
+\label{subsec:ssband}
+
+The binary model can deliver ``rationalize earlier and more often,'' but it
+cannot speak to the \emph{size} of rationalizations: the reset magnitude is
+pinned at $q^* - q_0$ by construction. Yet the size margin is where the
+data speak loudest (Section~\ref{sec:results}: events arrest degradation
+without resetting it). I therefore extend the model to let the firm choose
+\emph{how much} to rationalize.
+
+Let the firm pay $\kappa_f + \varphi(z)$ to reduce the state by $z > 0$,
+where $\kappa_f = \kappa_f(\alpha)$ is the \emph{fixed} component
+(coordination, freeze windows, review and regression risk of any
+non-trivial rationalization) and $\varphi$ is an increasing variable cost
+with $\varphi(0) = 0$. The binary model is nested: it corresponds to
+$\varphi$ forcing a full reset, with $\kappa = \kappa_f + \varphi(q^*-q_0)$.
+The central claim of the AI cost channel is then sharper than
+$\kappa\!\downarrow$: \emph{AI compresses the fixed component}
+$\kappa_f$ --- agents make small and mid-sized rewrites cheap --- which is
+exactly the parameter that generates lumpiness in fixed-cost adjustment
+models \citep{barro1972, grossmanlaroque1990, caballeroengel1999,
+cooperhaltiwanger2006}.
+
+For transparency I derive the deterministic continuous-time case in closed
+form; the stochastic case is qualitatively identical
+(Remark~\ref{rem:stochastic}). Let the state drift upward at rate
+$\mu = \mu(\alpha) > 0$ while operating ($\mu' > 0$: the transition
+channel), let flow maintenance cost be $\gamma q$ (the linear term of
+Equation~\eqref{eq:cost}; the convex case is in
+Appendix~\ref{app:proofs}), let $\varphi(z) = p z$, and impose the natural
+floor $q \geq q_0$. In the long-run average-cost problem the optimal policy
+is an $(S,s)$ band: let degradation run until $q$ hits the trigger $S$,
+then rationalize down to $s = q_0$, i.e.\ jump size $w = S - q_0$. Average
+cost per unit time is
+\begin{equation}
+    \mathrm{AC}(w) \;=\; \underbrace{\frac{\mu\,\big(\kappa_f + p\,w\big)}{w}}_{\text{rationalization}}
+    \;+\; \underbrace{\gamma\Big(q_0 + \tfrac{w}{2}\Big)}_{\text{maintenance}},
+    \label{eq:ac}
+\end{equation}
+since cycles have length $w/\mu$ and the state is uniform on $[q_0, q_0+w]$
+along a cycle. Minimizing over $w$:
+\begin{equation}
+    \boxed{\;
+    w^* \;=\; \sqrt{\frac{2\,\mu\,\kappa_f}{\gamma}}\,,
+    \qquad
+    f^* \;=\; \frac{\mu}{w^*} \;=\; \sqrt{\frac{\mu\,\gamma}{2\,\kappa_f}}\,,
+    \;}
+    \label{eq:band}
+\end{equation}
+where $w^*$ is the band width (event \emph{amplitude}) and $f^*$ the event
+\emph{frequency}.
+
+\begin{proposition}[Band comparative statics and the collapsing-band limit]
+\label{prop:band}
+In the $(S,s)$ model of Equation~\eqref{eq:ac}:
+\begin{enumerate}
+    \item[(i)] Frequency rises through \emph{both} channels:
+    $\partial f^*/\partial \mu > 0$ and
+    $\partial f^*/\partial \kappa_f < 0$.
+    \item[(ii)] Amplitude falls through the cost channel but \emph{rises}
+    through the transition channel:
+    $\partial w^*/\partial \kappa_f > 0$,
+    $\partial w^*/\partial \mu > 0$. Under a joint shift
+    $(\mu\!\uparrow, \kappa_f\!\downarrow)$, amplitude falls if and only if
+    the fixed-cost decline dominates in elasticity:
+    $\big|\mathrm{d}\ln \kappa_f\big| > \mathrm{d}\ln \mu$.
+    \item[(iii)] The rationalization spend rate,
+    $\mu \kappa_f / w^* + p\mu = \sqrt{\mu \gamma \kappa_f / 2} + p\mu$,
+    is ambiguous under a joint shift: the transition channel raises it,
+    the cost channel lowers it.
+    \item[(iv)] As $\kappa_f \to 0$, $w^* \to 0$ and $f^* \to \infty$:
+    the policy converges to continuous control at the floor,
+    $q \equiv q_0$, with smooth maintenance expenditure at rate $p\,\mu$.
+    Rationalization ceases to exist as a discrete event.
+\end{enumerate}
+\end{proposition}
+
+\noindent The proof is the algebra of Equation~\eqref{eq:band} plus an
+elementary limit argument (Appendix~\ref{app:proofs}).
+
+\begin{remark}[Stochastic degradation]
+\label{rem:stochastic}
+With Brownian noise on the degradation path, the problem is a classical
+impulse control of Brownian motion \citep{harrison1983}; the band width
+scales as $\kappa_f^{1/3}$ under linear flow cost and, in related quadratic
+settings, as $\kappa_f^{1/4}$ \citep{dixit1991}. All qualitative
+comparative statics in Proposition~\ref{prop:band} are unchanged.
+% TODO(PI): verify the exact exponents and attributions against the primary
+% sources before circulation, per project citation policy.
+\end{remark}
+
+\paragraph{Predictions and what remains empirical.}
+Table~\ref{tab:predictions} collects the signed content of the model.
+The joint prediction that is \emph{unambiguous} --- and therefore the
+model's primary falsifiable implication --- is that AI adoption raises the
+frequency of rationalization activity. Amplitude and the maintenance share
+of activity are \emph{signed by which channel dominates}, which is
+precisely what the empirical design of
+Section~\ref{subsec:adoption_design} is built to measure. Two further
+implications discipline the data work. First, the pilot's central pattern
+--- friction rising into events and \emph{plateauing} after them, with no
+reset to baseline (``rise-then-arrest,''
+Figure~\ref{fig:event_study_components}) --- is what an $(S,s)$ firm with
+a narrow band looks like in quarterly aggregation: interventions are
+frequent and small, so the quarterly state hovers near the trigger rather
+than sawtoothing. Read through the model, the pilot pattern is suggestive
+evidence that the fixed-cost channel dominates. Second, in the
+collapsing-band limit (iv), rationalization events become
+\emph{undetectable by construction}: for heavily AI-native codebases the
+correct empirical expectation is not larger rewrites but the
+disappearance of discrete rewrite events into smooth, elevated
+maintenance shares. Event-detection failure at high adoption intensity is
+thus a prediction, not a data problem.
+
+\begin{table}[t]
+\centering
+\caption{Signed predictions of the two-channel $(S,s)$ model}
+\label{tab:predictions}
+\begin{tabular}{lccc}
+\hline
+ & Cost channel & Transition channel & Joint shift \\
+Object & ($\kappa_f \downarrow$) & ($\mu \uparrow$) & ($\kappa_f\downarrow,\ \mu\uparrow$) \\
+\hline
+Rationalization frequency $f^*$ & $\uparrow$ & $\uparrow$ & $\uparrow$ (unambiguous) \\
+Event amplitude $w^*$ & $\downarrow$ & $\uparrow$ & $\downarrow$ iff $|\mathrm{d}\ln\kappa_f| > \mathrm{d}\ln\mu$ \\
+Replacement trigger $S^*$ & $\downarrow$ & $\uparrow$ & ambiguous \\
+Rationalization spend rate & $\downarrow$ & $\uparrow$ & ambiguous (empirical) \\
+Threshold effect by baseline $q$ & --- & stronger at high $q$ (A2) & testable heterogeneity \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Implications for estimation.}
+The $(S,s)$ structure changes what the data identify. In the binary model,
+the CCP estimator recovers $(\theta_1, \theta_2, \kappa)$ from
+rationalization hazards alone. In the band model, the \emph{joint}
+distribution of event frequency and event amplitude separately identifies
+the fixed cost $\kappa_f$ (from amplitude, via Equation~\eqref{eq:band})
+and the drift $\mu$ (from frequency given amplitude) --- so the two AI
+channels are separately identified from moments the panel already
+measures: refactor-episode sizes (churn and commit shares during event
+windows) and inter-event durations. This is the estimation target for the
+scaled sample; the pilot's role is to validate the event and amplitude
+measurement underlying those moments.
+
+% =========================================================================
+% APPENDIX MATERIAL — move to the paper's appendix
+% =========================================================================
+
+\section*{Appendix: Proofs for Sections~\ref{subsec:twochannel}--\ref{subsec:ssband}}
+\label{app:proofs}
+
+\paragraph{Proof of Proposition~\ref{prop:cost}.}
+Fix the primitives except $\kappa$. Standard arguments (bounded costs,
+$\beta < 1$) give existence and uniqueness of $V$ and, under A1, that $V$
+and $K$ are increasing in $q$, so the optimal policy is the threshold rule
+$a = \mathbf{1}\{q \geq q^*\}$ with $q^* = \inf\{q : \Delta(q) \geq 0\}$,
+$\Delta = K - R$.
+
+\emph{Step 1 (envelope).} Let $\Pi$ denote the optimal policy at $\kappa$.
+For fixed policy $\Pi$, the value is affine in $\kappa$:
+$V_\Pi(q; \kappa) = A_\Pi(q) + \kappa\, W_\Pi(q)$, where
+$W_\Pi(q) = \mathbb{E}^\Pi_q\big[\sum_{i \geq 1} \beta^{\tau_i}\big]$ is
+the expected discounted number of rationalizations at times
+$\tau_1 < \tau_2 < \cdots$. By the envelope theorem for dynamic
+discrete-choice values (or directly: two-sided policy-suboptimality
+bounds), $\partial V/\partial \kappa = W_{\Pi}(q)$ at almost every
+$\kappa$.
+
+\emph{Step 2 (renewal identity).} At $\tau_1$ the firm pays and the state
+regenerates from $q_0 + \eta$, independently of history. Hence
+\[
+    W(q) \;=\; \mathbb{E}_q\big[\beta^{\tau_1}\big]\Big(1 +
+    \beta\,\mathbb{E}_\eta\big[W(q_0+\eta)\big]\Big)
+    \;=\; m(q)\,(1 + B),
+\]
+with $m(q) = \mathbb{E}_q[\beta^{\tau_1}] \in [0, 1]$ and
+$B = \beta\,\mathbb{E}_\eta[W(q_0+\eta)] \geq 0$ independent of $q$.
+
+\emph{Step 3 (uniform strict decrease of $\Delta$).}
+\[
+    \frac{\partial \Delta(q)}{\partial \kappa}
+    = \beta\,\mathbb{E}\big[W(q') \mid q, 0\big] - \Big(1 +
+      \beta\,\mathbb{E}_\eta\big[W(q_0+\eta)\big]\Big)
+    = \beta (1+B)\, \mathbb{E}\big[m(q') \mid q, 0\big] - (1 + B).
+\]
+Since $m \leq 1$, the right side is at most
+$\beta(1+B) - (1+B) = -(1-\beta)(1+B) < 0$. Thus for $\kappa_1 > \kappa_0$,
+$\Delta(q; \kappa_1) < \Delta(q; \kappa_0)$ for every $q$, and therefore
+$q^*(\kappa_1) \geq q^*(\kappa_0)$, strictly when interior (A3).
+\hfill$\blacksquare$
+
+\paragraph{Proof of Proposition~\ref{prop:transition} (induction).}
+Let $T_\alpha$ denote the Bellman operator at intensity $\alpha$ and
+$V^0 \equiv 0$. We show by induction that each iterate satisfies
+(P$_n$): $V^n(\cdot\,; \alpha)$ is increasing in $q$, and
+$D^n(q) \equiv V^n(q; \alpha) - V^n(q; \alpha')$ is nonnegative and
+increasing in $q$ for $\alpha > \alpha'$.
+
+\emph{Base.} Trivial.
+
+\emph{Step.} Monotonicity in $q$: $c$ increasing (A1) and $G_\alpha$
+stochastically increasing in $q$ (A1) imply $K^{n+1}$ increasing; $R^{n+1}$
+constant; the min of an increasing and a constant function is increasing.
+
+Nonnegativity of $D^{n+1}$: by A2 (FOSD in $\alpha$) and $V^n$ increasing,
+$\mathbb{E}_{G_\alpha}[V^n \mid q] \geq \mathbb{E}_{G_{\alpha'}}[V^n \mid q]$;
+adding $D^n \geq 0$ inside the expectations preserves the ranking; the
+reset branch is unchanged in $\alpha$ except through
+$\mathbb{E}_\eta[D^n(q_0+\eta)] \geq 0$. The pointwise min of two functions
+each larger at $\alpha$ is larger at $\alpha$.
+
+Monotonicity of $D^{n+1}$ in $q$: on the keep region,
+\[
+    D^{n+1}(q) = \beta\Big(
+      \underbrace{\mathbb{E}_{G_\alpha}[V^n(\cdot;\alpha) \mid q]
+      - \mathbb{E}_{G_{\alpha'}}[V^n(\cdot;\alpha) \mid q]}_{\text{direct shift}}
+      + \underbrace{\mathbb{E}_{G_{\alpha'}}[D^n \mid q]}_{\text{inherited}}
+    \Big).
+\]
+The direct-shift term is increasing in $q$ by A2 (increasing differences)
+applied to the increasing function $V^n(\cdot;\alpha)$; the inherited term
+is increasing in $q$ because $D^n$ is increasing (induction) and
+$G_{\alpha'}$ is stochastically increasing in $q$ (A1). On the rationalize
+region $D^{n+1}$ is constant at
+$\beta\,\mathbb{E}_\eta[D^n(q_0+\eta)]$, which is (weakly) below its value
+on the keep region at the boundary; the piecewise structure preserves
+monotonicity across the boundary because the keep branch attains the min
+exactly where its (larger) $\alpha$-sensitivity applies.
+
+(P$_n$) passes to the limit $V = \lim V^n$ (uniform convergence,
+$\beta$-contraction). Increasingness of $D$ in $q$ is precisely increasing
+differences of $-\Delta$...
+
+Concretely: $\Delta(q; \alpha) - \Delta(q; \alpha') =
+\beta\big(\mathbb{E}_{G_\alpha}[V(\cdot;\alpha)\mid q] -
+\mathbb{E}_{G_{\alpha'}}[V(\cdot;\alpha')\mid q]\big) -
+\beta\,\mathbb{E}_\eta[D(q_0+\eta)]$. The first bracket equals the direct
+shift plus inherited term above evaluated at the limit, which is
+increasing in $q$ and, at the reset-anchored comparison point, at least
+$\mathbb{E}_\eta[D(q_0+\eta)]$ for all $q$ in a neighborhood of the
+threshold provided $q_0 + \eta \leq q^*$ a.s.\ (resets land strictly
+inside the continuation region --- an implication of A3 interiority).
+Hence $\Delta(\cdot; \alpha) \geq \Delta(\cdot; \alpha')$ near the
+threshold, and $q^*(\alpha) \leq q^*(\alpha')$.
+\hfill$\blacksquare$
+
+% NOTE(PI): the last paragraph is the step a careful referee will probe —
+% the comparison of the keep-branch alpha-sensitivity against the
+% reset-branch alpha-sensitivity near the threshold. The sufficient
+% condition doing the work is A2 (state-dependent acceleration) together
+% with resets landing inside the continuation region. If you want a
+% cleaner presentation, an alternative is to assume directly that
+% E[V|q,0] - E[V|q_0-reset] has increasing differences in (q, alpha) and
+% relegate primitives to a lemma. Please scrutinize line by line.
+
+\paragraph{Proof of Proposition~\ref{prop:band}.}
+(i)--(iii) are direct differentiation of Equation~\eqref{eq:band}:
+$\ln w^* = \tfrac12(\ln 2 + \ln\mu + \ln\kappa_f - \ln\gamma)$, so
+$\mathrm{d}\ln w^* = \tfrac12(\mathrm{d}\ln\mu + \mathrm{d}\ln\kappa_f)$,
+negative iff $|\mathrm{d}\ln\kappa_f| > \mathrm{d}\ln\mu$; and
+$\ln f^* = \tfrac12(\ln\mu + \ln\gamma - \ln 2 - \ln\kappa_f)$ is
+increasing in $\mu$ and decreasing in $\kappa_f$. The spend rate is
+$\sqrt{\mu\gamma\kappa_f/2} + p\mu$, increasing in $\mu$ and increasing in
+$\kappa_f$ (hence falling as AI compresses $\kappa_f$). For (iv), as
+$\kappa_f \to 0$ the minimized average cost converges to
+$\gamma q_0 + p\mu$, the cost of holding $q$ at the floor while paying the
+variable cost of absorbing degradation flow $\mu$ continuously; the band
+$[q_0, q_0 + w^*]$ collapses to the point $q_0$ and cycle length
+$w^*/\mu \to 0$.
+
+\emph{Convex flow cost.} With $c(q) = \theta_1 q + \theta_2 q^2$ the
+cycle-average maintenance cost is
+$\theta_1(q_0 + w/2) + \theta_2\big(q_0^2 + q_0 w + w^2/3\big)$ and the
+first-order condition becomes
+$\mu\kappa_f / w^2 = \theta_1/2 + \theta_2 q_0 + \tfrac{2}{3}\theta_2 w$,
+which has a unique positive root with the same limits and the same signs
+of all comparative statics; convexity ($\theta_2 > 0$) shrinks $w^*$
+relative to the linear case, reinforcing (iv).
+\hfill$\blacksquare$
