@@ -1,0 +1,6 @@
+CQI-F loading stability across delta and stocks-vs-flows
+
+[stocks delta=0.05] PC1 var=0.718  loadings: latency=+0.550, refactor=+0.556, churn=+0.553, backlog=+0.287
+[stocks delta=0.09] PC1 var=0.628  loadings: latency=+0.538, refactor=+0.570, churn=+0.570, backlog=+0.246
+[stocks delta=0.15] PC1 var=0.540  loadings: latency=+0.525, refactor=+0.584, churn=+0.588, backlog=+0.193
+[raw flows] PC2 var=0.250  loadings: latency=+0.559, refactor=-0.143, churn=-0.346, backlog=+0.739

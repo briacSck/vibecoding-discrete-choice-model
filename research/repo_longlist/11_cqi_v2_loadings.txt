@@ -1,0 +1,11 @@
+CQI v2 two-factor model (per-repo z-scored PIM stocks, delta=0.09)
+variance shares (all PCs): 0.628, 0.230, 0.096, 0.046
+friction component = PC1, activity = PC2
+
+signal          CQI-F (friction)  ACT (activity)
+zS_latency                0.5385         -0.0090
+zS_refactor               0.5701          0.1722
+zS_churn                  0.5696          0.2480
+zS_backlog                0.2461         -0.9533
+
+debt-event set (events.csv debt_event==1): Infisical/infisical@2024-Q1, dagger/dagger@2023-Q4, inngest/inngest@2024-Q3, qdrant/qdrant@2026-Q2, triggerdotdev/trigger.dev@2024-Q3, weaviate/weaviate@2024-Q1
