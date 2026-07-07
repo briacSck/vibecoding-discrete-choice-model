@@ -139,7 +139,13 @@ def ensure_clone(repo: str) -> str:
     safe = repo.replace("/", "__")
     clone_dir = os.path.join(REPO_CACHE, f"{safe}.git")
     if os.path.isdir(clone_dir):
-        log(f"  clone exists: {clone_dir}")
+        # Refresh: bare clones don't fetch by default — pull new branch tips
+        # and tags so panel extensions see post-clone history.
+        log(f"  clone exists — fetching updates: {clone_dir}")
+        subprocess.run(
+            ["git", "-C", clone_dir, "fetch", "origin",
+             "+refs/heads/*:refs/heads/*", "--tags", "--prune"],
+            capture_output=True, text=True)
         return clone_dir
     log(f"  cloning {repo} (bare, --shallow-since={SHALLOW_SINCE}) ...")
     proc = subprocess.run(

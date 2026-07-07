@@ -354,3 +354,355 @@ All done.
 [2026-07-06 01:17:28] Panel data:          C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_panel_data.csv
 [2026-07-06 01:17:28] Contributor history: C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_contributor_history.csv
 [2026-07-06 01:17:28] Log:                 C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_collection_log.txt
+[2026-07-07 14:33:04] Checkpoint loaded: 168 (repo, quarter) pairs already saved (0 repos fully complete)
+[2026-07-07 14:33:04] 
+============================================================
+[2026-07-07 14:33:04] Collecting: PostHog/posthog [full_rewrite]
+[2026-07-07 14:33:04] ============================================================
+[2026-07-07 14:33:04]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 14:33:04]   → commits + authors ...
+[2026-07-07 14:33:04]    2023-Q1: skipped (already collected)
+[2026-07-07 14:33:04]    2023-Q2: skipped (already collected)
+[2026-07-07 14:33:04]    2023-Q3: skipped (already collected)
+[2026-07-07 14:33:04]    2023-Q4: skipped (already collected)
+[2026-07-07 14:33:04]    2024-Q1: skipped (already collected)
+[2026-07-07 14:33:04]    2024-Q2: skipped (already collected)
+[2026-07-07 14:33:04]    2024-Q3: skipped (already collected)
+[2026-07-07 14:33:04]    2024-Q4: skipped (already collected)
+[2026-07-07 14:33:04]    2025-Q1: skipped (already collected)
+[2026-07-07 14:33:04]    2025-Q2: skipped (already collected)
+[2026-07-07 14:33:04]    2025-Q3: skipped (already collected)
+[2026-07-07 14:33:04]    2025-Q4: skipped (already collected)
+[2026-07-07 14:35:26]    2026-Q1:  5935 human commits (+416 bot), 154 authors
+[2026-07-07 14:38:48]    2026-Q2:  8917 human commits (+731 bot), 186 authors
+[2026-07-07 14:38:48]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 14:51:14]   → issues ...
+[2026-07-07 15:01:47]   ✓ PostHog/posthog done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:01:47] 
+============================================================
+[2026-07-07 15:01:47] Collecting: Infisical/infisical [migration]
+[2026-07-07 15:01:47] ============================================================
+[2026-07-07 15:01:47]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:01:47]   → commits + authors ...
+[2026-07-07 15:01:47]    2023-Q1: skipped (already collected)
+[2026-07-07 15:01:47]    2023-Q2: skipped (already collected)
+[2026-07-07 15:01:47]    2023-Q3: skipped (already collected)
+[2026-07-07 15:01:47]    2023-Q4: skipped (already collected)
+[2026-07-07 15:01:47]    2024-Q1: skipped (already collected)
+[2026-07-07 15:01:47]    2024-Q2: skipped (already collected)
+[2026-07-07 15:01:47]    2024-Q3: skipped (already collected)
+[2026-07-07 15:01:47]    2024-Q4: skipped (already collected)
+[2026-07-07 15:01:47]    2025-Q1: skipped (already collected)
+[2026-07-07 15:01:47]    2025-Q2: skipped (already collected)
+[2026-07-07 15:01:47]    2025-Q3: skipped (already collected)
+[2026-07-07 15:01:47]    2025-Q4: skipped (already collected)
+[2026-07-07 15:02:49]    2026-Q1:  2715 human commits (+156 bot),  33 authors
+[2026-07-07 15:04:15]    2026-Q2:  4162 human commits (+112 bot),  35 authors
+[2026-07-07 15:04:15]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:05:13]   → issues ...
+[2026-07-07 15:06:12]   ✓ Infisical/infisical done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:06:12] 
+============================================================
+[2026-07-07 15:06:12] Collecting: dagger/dagger [full_rewrite]
+[2026-07-07 15:06:12] ============================================================
+[2026-07-07 15:06:12]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:06:12]   → commits + authors ...
+[2026-07-07 15:06:12]    2023-Q1: skipped (already collected)
+[2026-07-07 15:06:12]    2023-Q2: skipped (already collected)
+[2026-07-07 15:06:12]    2023-Q3: skipped (already collected)
+[2026-07-07 15:06:12]    2023-Q4: skipped (already collected)
+[2026-07-07 15:06:12]    2024-Q1: skipped (already collected)
+[2026-07-07 15:06:12]    2024-Q2: skipped (already collected)
+[2026-07-07 15:06:12]    2024-Q3: skipped (already collected)
+[2026-07-07 15:06:12]    2024-Q4: skipped (already collected)
+[2026-07-07 15:06:12]    2025-Q1: skipped (already collected)
+[2026-07-07 15:06:12]    2025-Q2: skipped (already collected)
+[2026-07-07 15:06:12]    2025-Q3: skipped (already collected)
+[2026-07-07 15:06:12]    2025-Q4: skipped (already collected)
+[2026-07-07 15:06:19]    2026-Q1:   228 human commits (+45 bot),  30 authors
+[2026-07-07 15:06:37]    2026-Q2:   598 human commits (+32 bot),  26 authors
+[2026-07-07 15:06:37]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:07:22]   → issues ...
+[2026-07-07 15:08:32]   ✓ dagger/dagger done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:08:32] 
+============================================================
+[2026-07-07 15:08:32] Collecting: triggerdotdev/trigger.dev [full_rewrite]
+[2026-07-07 15:08:32] ============================================================
+[2026-07-07 15:08:32]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:08:32]   → commits + authors ...
+[2026-07-07 15:08:32]    2023-Q1: skipped (already collected)
+[2026-07-07 15:08:32]    2023-Q2: skipped (already collected)
+[2026-07-07 15:08:32]    2023-Q3: skipped (already collected)
+[2026-07-07 15:08:32]    2023-Q4: skipped (already collected)
+[2026-07-07 15:08:32]    2024-Q1: skipped (already collected)
+[2026-07-07 15:08:32]    2024-Q2: skipped (already collected)
+[2026-07-07 15:08:32]    2024-Q3: skipped (already collected)
+[2026-07-07 15:08:32]    2024-Q4: skipped (already collected)
+[2026-07-07 15:08:32]    2025-Q1: skipped (already collected)
+[2026-07-07 15:08:32]    2025-Q2: skipped (already collected)
+[2026-07-07 15:08:32]    2025-Q3: skipped (already collected)
+[2026-07-07 15:08:32]    2025-Q4: skipped (already collected)
+[2026-07-07 15:08:41]    2026-Q1:   251 human commits (+8 bot),  16 authors
+[2026-07-07 15:09:01]    2026-Q2:   414 human commits (+18 bot),  13 authors
+[2026-07-07 15:09:01]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:09:45]   → issues ...
+[2026-07-07 15:10:33]   ✓ triggerdotdev/trigger.dev done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:10:33] 
+============================================================
+[2026-07-07 15:10:33] Collecting: appwrite/appwrite [full_rewrite]
+[2026-07-07 15:10:33] ============================================================
+[2026-07-07 15:10:33]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:10:33]   → commits + authors ...
+[2026-07-07 15:10:33]    2023-Q1: skipped (already collected)
+[2026-07-07 15:10:33]    2023-Q2: skipped (already collected)
+[2026-07-07 15:10:33]    2023-Q3: skipped (already collected)
+[2026-07-07 15:10:33]    2023-Q4: skipped (already collected)
+[2026-07-07 15:10:33]    2024-Q1: skipped (already collected)
+[2026-07-07 15:10:33]    2024-Q2: skipped (already collected)
+[2026-07-07 15:10:33]    2024-Q3: skipped (already collected)
+[2026-07-07 15:10:33]    2024-Q4: skipped (already collected)
+[2026-07-07 15:10:33]    2025-Q1: skipped (already collected)
+[2026-07-07 15:10:33]    2025-Q2: skipped (already collected)
+[2026-07-07 15:10:33]    2025-Q3: skipped (already collected)
+[2026-07-07 15:10:33]    2025-Q4: skipped (already collected)
+[2026-07-07 15:11:36]    2026-Q1:  2238 human commits (+0 bot),  19 authors
+[2026-07-07 15:12:58]    2026-Q2:  2903 human commits (+0 bot),  24 authors
+[2026-07-07 15:12:58]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:14:20]   → issues ...
+[2026-07-07 15:15:05]   ✓ appwrite/appwrite done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:15:05] 
+============================================================
+[2026-07-07 15:15:05] Collecting: airbytehq/airbyte [migration]
+[2026-07-07 15:15:05] ============================================================
+[2026-07-07 15:15:05]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:15:05]   → commits + authors ...
+[2026-07-07 15:15:05]    2023-Q1: skipped (already collected)
+[2026-07-07 15:15:05]    2023-Q2: skipped (already collected)
+[2026-07-07 15:15:05]    2023-Q3: skipped (already collected)
+[2026-07-07 15:15:05]    2023-Q4: skipped (already collected)
+[2026-07-07 15:15:05]    2024-Q1: skipped (already collected)
+[2026-07-07 15:15:05]    2024-Q2: skipped (already collected)
+[2026-07-07 15:15:05]    2024-Q3: skipped (already collected)
+[2026-07-07 15:15:05]    2024-Q4: skipped (already collected)
+[2026-07-07 15:15:05]    2025-Q1: skipped (already collected)
+[2026-07-07 15:15:05]    2025-Q2: skipped (already collected)
+[2026-07-07 15:15:05]    2025-Q3: skipped (already collected)
+[2026-07-07 15:15:05]    2025-Q4: skipped (already collected)
+[2026-07-07 15:16:06] Checkpoint loaded: 178 (repo, quarter) pairs already saved (5 repos fully complete)
+[2026-07-07 15:16:06] Skipping PostHog/posthog (all 12 quarters already collected)
+[2026-07-07 15:16:06] Skipping Infisical/infisical (all 12 quarters already collected)
+[2026-07-07 15:16:06] Skipping dagger/dagger (all 12 quarters already collected)
+[2026-07-07 15:16:06] Skipping triggerdotdev/trigger.dev (all 12 quarters already collected)
+[2026-07-07 15:16:06] Skipping appwrite/appwrite (all 12 quarters already collected)
+[2026-07-07 15:16:06] 
+============================================================
+[2026-07-07 15:16:06] Collecting: airbytehq/airbyte [migration]
+[2026-07-07 15:16:06] ============================================================
+[2026-07-07 15:16:06]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:16:06]   → commits + authors ...
+[2026-07-07 15:16:06]    2023-Q1: skipped (already collected)
+[2026-07-07 15:16:06]    2023-Q2: skipped (already collected)
+[2026-07-07 15:16:06]    2023-Q3: skipped (already collected)
+[2026-07-07 15:16:06]    2023-Q4: skipped (already collected)
+[2026-07-07 15:16:06]    2024-Q1: skipped (already collected)
+[2026-07-07 15:16:06]    2024-Q2: skipped (already collected)
+[2026-07-07 15:16:06]    2024-Q3: skipped (already collected)
+[2026-07-07 15:16:06]    2024-Q4: skipped (already collected)
+[2026-07-07 15:16:06]    2025-Q1: skipped (already collected)
+[2026-07-07 15:16:06]    2025-Q2: skipped (already collected)
+[2026-07-07 15:16:06]    2025-Q3: skipped (already collected)
+[2026-07-07 15:16:06]    2025-Q4: skipped (already collected)
+[2026-07-07 15:17:13]    2026-Q1:   367 human commits (+3000 bot),  49 authors
+[2026-07-07 15:18:12]    2026-Q2:   437 human commits (+3126 bot),  40 authors
+[2026-07-07 15:18:12]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:27:14]   → issues ...
+[2026-07-07 15:33:46]   ✓ airbytehq/airbyte done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:33:46] 
+============================================================
+[2026-07-07 15:33:46] Collecting: zed-industries/zed [transition]
+[2026-07-07 15:33:46] ============================================================
+[2026-07-07 15:33:46]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:33:46]   → commits + authors ...
+[2026-07-07 15:33:46]    2023-Q1: skipped (already collected)
+[2026-07-07 15:33:46]    2023-Q2: skipped (already collected)
+[2026-07-07 15:33:46]    2023-Q3: skipped (already collected)
+[2026-07-07 15:33:46]    2023-Q4: skipped (already collected)
+[2026-07-07 15:33:46]    2024-Q1: skipped (already collected)
+[2026-07-07 15:33:46]    2024-Q2: skipped (already collected)
+[2026-07-07 15:33:46]    2024-Q3: skipped (already collected)
+[2026-07-07 15:33:46]    2024-Q4: skipped (already collected)
+[2026-07-07 15:33:46]    2025-Q1: skipped (already collected)
+[2026-07-07 15:33:46]    2025-Q2: skipped (already collected)
+[2026-07-07 15:33:46]    2025-Q3: skipped (already collected)
+[2026-07-07 15:33:46]    2025-Q4: skipped (already collected)
+[2026-07-07 15:34:39]    2026-Q1:  2684 human commits (+13 bot), 389 authors
+[2026-07-07 15:35:13]    2026-Q2:  2145 human commits (+17 bot), 377 authors
+[2026-07-07 15:35:13]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:38:37]   → issues ...
+[2026-07-07 15:43:37]   ✓ zed-industries/zed done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:43:37] 
+============================================================
+[2026-07-07 15:43:37] Collecting: LedgerHQ/ledger-live [migration]
+[2026-07-07 15:43:37] ============================================================
+[2026-07-07 15:43:37]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:43:37]   → commits + authors ...
+[2026-07-07 15:43:37]    2023-Q1: skipped (already collected)
+[2026-07-07 15:43:37]    2023-Q2: skipped (already collected)
+[2026-07-07 15:43:37]    2023-Q3: skipped (already collected)
+[2026-07-07 15:43:37]    2023-Q4: skipped (already collected)
+[2026-07-07 15:43:37]    2024-Q1: skipped (already collected)
+[2026-07-07 15:43:37]    2024-Q2: skipped (already collected)
+[2026-07-07 15:43:37]    2024-Q3: skipped (already collected)
+[2026-07-07 15:43:37]    2024-Q4: skipped (already collected)
+[2026-07-07 15:43:37]    2025-Q1: skipped (already collected)
+[2026-07-07 15:43:37]    2025-Q2: skipped (already collected)
+[2026-07-07 15:43:37]    2025-Q3: skipped (already collected)
+[2026-07-07 15:43:37]    2025-Q4: skipped (already collected)
+[2026-07-07 15:44:53]    2026-Q1:  4480 human commits (+313 bot),  78 authors
+[2026-07-07 15:46:21]    2026-Q2:  5843 human commits (+312 bot),  92 authors
+[2026-07-07 15:46:21]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:50:26]   → issues ...
+[2026-07-07 15:53:28]   ✓ LedgerHQ/ledger-live done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:53:28] 
+============================================================
+[2026-07-07 15:53:28] Collecting: weaviate/weaviate [migration]
+[2026-07-07 15:53:28] ============================================================
+[2026-07-07 15:53:28]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:53:28]   → commits + authors ...
+[2026-07-07 15:53:28]    2023-Q1: skipped (already collected)
+[2026-07-07 15:53:28]    2023-Q2: skipped (already collected)
+[2026-07-07 15:53:28]    2023-Q3: skipped (already collected)
+[2026-07-07 15:53:28]    2023-Q4: skipped (already collected)
+[2026-07-07 15:53:28]    2024-Q1: skipped (already collected)
+[2026-07-07 15:53:28]    2024-Q2: skipped (already collected)
+[2026-07-07 15:53:28]    2024-Q3: skipped (already collected)
+[2026-07-07 15:53:28]    2024-Q4: skipped (already collected)
+[2026-07-07 15:53:28]    2025-Q1: skipped (already collected)
+[2026-07-07 15:53:28]    2025-Q2: skipped (already collected)
+[2026-07-07 15:53:28]    2025-Q3: skipped (already collected)
+[2026-07-07 15:53:28]    2025-Q4: skipped (already collected)
+[2026-07-07 15:53:56]    2026-Q1:  1887 human commits (+24 bot),  26 authors
+[2026-07-07 15:54:24]    2026-Q2:  1940 human commits (+42 bot),  38 authors
+[2026-07-07 15:54:24]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:55:06]   → issues ...
+[2026-07-07 15:55:43]   ✓ weaviate/weaviate done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:55:43] 
+============================================================
+[2026-07-07 15:55:43] Collecting: astral-sh/ruff [full_rewrite]
+[2026-07-07 15:55:43] ============================================================
+[2026-07-07 15:55:43]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:55:43]   → commits + authors ...
+[2026-07-07 15:55:43]    2023-Q1: skipped (already collected)
+[2026-07-07 15:55:43]    2023-Q2: skipped (already collected)
+[2026-07-07 15:55:43]    2023-Q3: skipped (already collected)
+[2026-07-07 15:55:43]    2023-Q4: skipped (already collected)
+[2026-07-07 15:55:43]    2024-Q1: skipped (already collected)
+[2026-07-07 15:55:43]    2024-Q2: skipped (already collected)
+[2026-07-07 15:55:43]    2024-Q3: skipped (already collected)
+[2026-07-07 15:55:43]    2024-Q4: skipped (already collected)
+[2026-07-07 15:55:43]    2025-Q1: skipped (already collected)
+[2026-07-07 15:55:43]    2025-Q2: skipped (already collected)
+[2026-07-07 15:55:43]    2025-Q3: skipped (already collected)
+[2026-07-07 15:55:43]    2025-Q4: skipped (already collected)
+[2026-07-07 15:56:03]    2026-Q1:  1099 human commits (+215 bot), 124 authors
+[2026-07-07 15:56:20]    2026-Q2:  1027 human commits (+182 bot), 106 authors
+[2026-07-07 15:56:20]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:57:51]   → issues ...
+[2026-07-07 15:59:19]   ✓ astral-sh/ruff done — 2 new quarter rows written (12 already had)
+[2026-07-07 15:59:19] 
+============================================================
+[2026-07-07 15:59:19] Collecting: inngest/inngest [full_rewrite]
+[2026-07-07 15:59:19] ============================================================
+[2026-07-07 15:59:19]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 15:59:19]   → commits + authors ...
+[2026-07-07 15:59:19]    2023-Q1: skipped (already collected)
+[2026-07-07 15:59:19]    2023-Q2: skipped (already collected)
+[2026-07-07 15:59:19]    2023-Q3: skipped (already collected)
+[2026-07-07 15:59:19]    2023-Q4: skipped (already collected)
+[2026-07-07 15:59:19]    2024-Q1: skipped (already collected)
+[2026-07-07 15:59:19]    2024-Q2: skipped (already collected)
+[2026-07-07 15:59:19]    2024-Q3: skipped (already collected)
+[2026-07-07 15:59:19]    2024-Q4: skipped (already collected)
+[2026-07-07 15:59:19]    2025-Q1: skipped (already collected)
+[2026-07-07 15:59:19]    2025-Q2: skipped (already collected)
+[2026-07-07 15:59:19]    2025-Q3: skipped (already collected)
+[2026-07-07 15:59:19]    2025-Q4: skipped (already collected)
+[2026-07-07 15:59:24]    2026-Q1:   303 human commits (+1 bot),  21 authors
+[2026-07-07 15:59:32]    2026-Q2:   376 human commits (+36 bot),  29 authors
+[2026-07-07 15:59:32]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 15:59:54]   → issues ...
+[2026-07-07 16:00:17]   ✓ inngest/inngest done — 2 new quarter rows written (12 already had)
+[2026-07-07 16:00:17] 
+============================================================
+[2026-07-07 16:00:17] Collecting: milvus-io/milvus [full_rewrite]
+[2026-07-07 16:00:17] ============================================================
+[2026-07-07 16:00:17]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 16:00:17]   → commits + authors ...
+[2026-07-07 16:00:17]    2023-Q1: skipped (already collected)
+[2026-07-07 16:00:17]    2023-Q2: skipped (already collected)
+[2026-07-07 16:00:17]    2023-Q3: skipped (already collected)
+[2026-07-07 16:00:17]    2023-Q4: skipped (already collected)
+[2026-07-07 16:00:17]    2024-Q1: skipped (already collected)
+[2026-07-07 16:00:17]    2024-Q2: skipped (already collected)
+[2026-07-07 16:00:17]    2024-Q3: skipped (already collected)
+[2026-07-07 16:00:17]    2024-Q4: skipped (already collected)
+[2026-07-07 16:00:17]    2025-Q1: skipped (already collected)
+[2026-07-07 16:00:17]    2025-Q2: skipped (already collected)
+[2026-07-07 16:00:17]    2025-Q3: skipped (already collected)
+[2026-07-07 16:00:17]    2025-Q4: skipped (already collected)
+[2026-07-07 16:00:26]    2026-Q1:   538 human commits (+0 bot),  49 authors
+[2026-07-07 16:00:36]    2026-Q2:   657 human commits (+1 bot),  48 authors
+[2026-07-07 16:00:36]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 16:02:33]   → issues ...
+[2026-07-07 16:04:30]   ✓ milvus-io/milvus done — 2 new quarter rows written (12 already had)
+[2026-07-07 16:04:30] 
+============================================================
+[2026-07-07 16:04:30] Collecting: tursodatabase/libsql [pivot]
+[2026-07-07 16:04:30] ============================================================
+[2026-07-07 16:04:30]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 16:04:30]   → commits + authors ...
+[2026-07-07 16:04:30]    2023-Q1: skipped (already collected)
+[2026-07-07 16:04:30]    2023-Q2: skipped (already collected)
+[2026-07-07 16:04:30]    2023-Q3: skipped (already collected)
+[2026-07-07 16:04:30]    2023-Q4: skipped (already collected)
+[2026-07-07 16:04:30]    2024-Q1: skipped (already collected)
+[2026-07-07 16:04:30]    2024-Q2: skipped (already collected)
+[2026-07-07 16:04:30]    2024-Q3: skipped (already collected)
+[2026-07-07 16:04:30]    2024-Q4: skipped (already collected)
+[2026-07-07 16:04:30]    2025-Q1: skipped (already collected)
+[2026-07-07 16:04:30]    2025-Q2: skipped (already collected)
+[2026-07-07 16:04:30]    2025-Q3: skipped (already collected)
+[2026-07-07 16:04:30]    2025-Q4: skipped (already collected)
+[2026-07-07 16:04:31]    2026-Q1:    14 human commits (+0 bot),   4 authors
+[2026-07-07 16:04:32]    2026-Q2:    30 human commits (+0 bot),   3 authors
+[2026-07-07 16:04:32]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 16:04:34]   → issues ...
+[2026-07-07 16:04:36]   ✓ tursodatabase/libsql done — 2 new quarter rows written (12 already had)
+[2026-07-07 16:04:36] 
+============================================================
+[2026-07-07 16:04:36] Collecting: qdrant/qdrant [fuzzy]
+[2026-07-07 16:04:36] ============================================================
+[2026-07-07 16:04:36]   Resuming — 12/14 quarters already saved, skipping them
+[2026-07-07 16:04:36]   → commits + authors ...
+[2026-07-07 16:04:36]    2023-Q1: skipped (already collected)
+[2026-07-07 16:04:36]    2023-Q2: skipped (already collected)
+[2026-07-07 16:04:36]    2023-Q3: skipped (already collected)
+[2026-07-07 16:04:36]    2023-Q4: skipped (already collected)
+[2026-07-07 16:04:36]    2024-Q1: skipped (already collected)
+[2026-07-07 16:04:36]    2024-Q2: skipped (already collected)
+[2026-07-07 16:04:36]    2024-Q3: skipped (already collected)
+[2026-07-07 16:04:36]    2024-Q4: skipped (already collected)
+[2026-07-07 16:04:36]    2025-Q1: skipped (already collected)
+[2026-07-07 16:04:36]    2025-Q2: skipped (already collected)
+[2026-07-07 16:04:36]    2025-Q3: skipped (already collected)
+[2026-07-07 16:04:36]    2025-Q4: skipped (already collected)
+[2026-07-07 16:04:43]    2026-Q1:   357 human commits (+122 bot),  25 authors
+[2026-07-07 16:04:52]    2026-Q2:   431 human commits (+86 bot),  28 authors
+[2026-07-07 16:04:52]   → closed PRs (back to 2026-01-01) ...
+[2026-07-07 16:05:31]   → issues ...
+[2026-07-07 16:06:10]   ✓ qdrant/qdrant done — 2 new quarter rows written (12 already had)
+[2026-07-07 16:06:10] 
+All done.
+[2026-07-07 16:06:10] Panel data:          C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_panel_data.csv
+[2026-07-07 16:06:10] Contributor history: C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_contributor_history.csv
+[2026-07-07 16:06:10] Log:                 C:\Users\briac\Econ_Code\discrete_vibecoding\research\repo_longlist\08_collection_log.txt

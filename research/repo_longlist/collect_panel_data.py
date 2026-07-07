@@ -105,14 +105,24 @@ QUARTERS = [
     ("2025-Q2", "2025-04-01T00:00:00Z", "2025-07-01T00:00:00Z"),
     ("2025-Q3", "2025-07-01T00:00:00Z", "2025-10-01T00:00:00Z"),
     ("2025-Q4", "2025-10-01T00:00:00Z", "2026-01-01T00:00:00Z"),
+    # Extension 2026-07-07: two post-AI-adoption quarters (most adoption
+    # dates land 2024-Q4..2025-Q4, so these carry the treatment effects).
+    ("2026-Q1", "2026-01-01T00:00:00Z", "2026-04-01T00:00:00Z"),
+    ("2026-Q2", "2026-04-01T00:00:00Z", "2026-07-01T00:00:00Z"),
 ]
 
 PANEL_START  = "2023-01-01T00:00:00Z"
-PANEL_END    = "2026-01-01T00:00:00Z"
+PANEL_END    = "2026-07-01T00:00:00Z"
 PANEL_START_TS = 1672531200   # 2023-01-01 UTC unix
 # BUGFIX 2026-07-05: this was 1735689600, which is 2025-01-01, not 2026-01-01.
 # It silently discarded every PR merged and issue opened/closed in 2025.
-PANEL_END_TS   = 1767225600   # 2026-01-01 UTC unix
+# Cross-check: datetime.fromtimestamp(PANEL_END_TS, tz=UTC) is asserted below.
+PANEL_END_TS   = 1782864000   # 2026-07-01 UTC unix
+
+# This constant has burned us once — fail loudly if it ever drifts again.
+assert datetime.fromtimestamp(PANEL_END_TS, tz=timezone.utc).strftime(
+    "%Y-%m-%dT%H:%M:%SZ") == PANEL_END, "PANEL_END_TS does not match PANEL_END"
+assert QUARTERS[-1][2] == PANEL_END, "last quarter must end at PANEL_END"
 
 # Label substrings that identify a PR as refactor-type (case-insensitive)
 REFACTOR_LABEL_PATTERNS = [
@@ -431,13 +441,17 @@ def collect_commits_and_authors(repo: str,
     return commits_by_q, bot_commits_by_q, authors_by_q
 
 
-def collect_prs(repo: str) -> dict:
+def collect_prs(repo: str, needed_start_ts: float = None) -> dict:
     """
     Returns {quarter: {total, refactor_count, latencies: []}}
-    Paginates closed PRs sorted by updated desc; stops before panel start.
+    Paginates closed PRs sorted by updated desc; stops before needed_start_ts
+    (default: panel start). On resume runs only the not-yet-written quarters
+    need PR data, so pagination can stop much earlier — a PR merged in a
+    needed quarter always has updated_at >= its merge time.
     """
-    # stop fetching once items are older than a month before panel start
-    stop_ts = PANEL_START_TS - 30 * 86400
+    # stop fetching once items are older than a month before the first
+    # quarter we still need
+    stop_ts = (needed_start_ts or PANEL_START_TS) - 30 * 86400
 
     url = (f"{BASE_URL}/repos/{repo}/pulls"
            f"?state=closed&sort=updated&direction=desc&per_page=100")
@@ -495,15 +509,16 @@ def collect_prs(repo: str) -> dict:
     return q_data
 
 
-def collect_issues(repo: str) -> dict:
+def collect_issues(repo: str, needed_start_iso: str = None) -> dict:
     """
     Returns {quarter: {opened: int, closed: int}}
-    Paginates issues (state=all) since panel start; skips PR-type items.
+    Paginates issues (state=all) since needed_start_iso (default panel
+    start); skips PR-type items. The `since` param filters on updated_at,
+    so an old issue closed inside a needed quarter is still returned.
     """
-    stop_ts = PANEL_END_TS + 30 * 86400  # stop past panel end
-
+    since = needed_start_iso or PANEL_START
     url = (f"{BASE_URL}/repos/{repo}/issues"
-           f"?state=all&sort=created&direction=asc&since={PANEL_START}&per_page=100")
+           f"?state=all&sort=created&direction=asc&since={since}&per_page=100")
 
     q_data: dict[str, dict] = {
         q: {"opened": 0, "closed": 0}
@@ -575,20 +590,27 @@ def collect_repo(repo: str, event_type: str, call_sleep: float,
     skip_quarters = {q for (r, q) in done_pairs if r == repo}
     n_skip = len(skip_quarters)
     if n_skip:
-        log(f"  Resuming — {n_skip}/12 quarters already saved, skipping them")
+        log(f"  Resuming — {n_skip}/{len(QUARTERS)} quarters already saved, "
+            f"skipping them")
+
+    # PR/issue pagination only needs to reach back to the earliest quarter
+    # we still have to write.
+    needed = [(q, since) for q, since, _ in QUARTERS if q not in skip_quarters]
+    needed_start_iso = needed[0][1] if needed else PANEL_START
+    needed_start_ts  = _parse_iso(needed_start_iso) or PANEL_START_TS
 
     # 1. Commits + authors — skips already-done quarters
     log("  → commits + authors ...")
     commits_by_q, bot_commits_by_q, authors_by_q = \
         collect_commits_and_authors(repo, skip_quarters)
 
-    # 2. PRs (single paginated pass — always re-fetched for incomplete repos)
-    log("  → closed PRs ...")
-    pr_data = collect_prs(repo)
+    # 2. PRs (paginated back to the first needed quarter)
+    log(f"  → closed PRs (back to {needed_start_iso[:10]}) ...")
+    pr_data = collect_prs(repo, needed_start_ts)
 
-    # 3. Issues (single paginated pass)
+    # 3. Issues (paginated back to the first needed quarter)
     log("  → issues ...")
-    issue_data = collect_issues(repo)
+    issue_data = collect_issues(repo, needed_start_iso)
 
     # 4. Compute metrics and write one row per quarter immediately
     rows_written = 0
