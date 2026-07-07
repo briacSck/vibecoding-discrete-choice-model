@@ -1,0 +1,15 @@
+repo,marker_q,coauthor_q,adoption_q
+PostHog/posthog,2025-Q1,2025-Q2,2025-Q1
+Infisical/infisical,2026-Q1,2026-Q1,2026-Q1
+dagger/dagger,2026-Q1,2026-Q1,2026-Q1
+triggerdotdev/trigger.dev,2024-Q4,2026-Q1,2024-Q4
+appwrite/appwrite,2025-Q4,2025-Q3,2025-Q3
+airbytehq/airbyte,2026-Q1,2025-Q1,2025-Q1
+zed-industries/zed,2025-Q2,2024-Q2,2024-Q2
+LedgerHQ/ledger-live,2025-Q4,2025-Q4,2025-Q4
+weaviate/weaviate,2026-Q1,2025-Q4,2025-Q4
+astral-sh/ruff,2026-Q1,2025-Q3,2025-Q3
+inngest/inngest,2025-Q4,2025-Q2,2025-Q2
+milvus-io/milvus,2026-Q1,2026-Q1,2026-Q1
+tursodatabase/libsql,,,
+qdrant/qdrant,,2025-Q2,2025-Q2
