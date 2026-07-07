@@ -216,3 +216,10 @@ temp/
 # =============================================================================
 .gstack/
 feynman-session-*.html
+
+# local bare clones for git metrics (collect_git_metrics.py)
+research/repo_cache/
+
+# collector runtime logs
+research/repo_longlist/_collector_*.log
+research/repo_longlist/_supervisor.log

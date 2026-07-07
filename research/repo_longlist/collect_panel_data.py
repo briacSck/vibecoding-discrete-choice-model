@@ -11,11 +11,23 @@ Outputs (all in same directory as this script):
   08_collection_log.txt      — timestamped progress and error log
 
 Metrics per (repo, quarter):
-  commits, pr_count_total, pr_count_refactor, pr_refactor_ratio,
+  commits (human), commits_bot,
+  pr_count_total, pr_count_refactor (label OR title match),
+  pr_count_refactor_label, pr_count_refactor_title, pr_refactor_ratio,
   pr_review_latency_median, pr_review_latency_p75,
-  additions, deletions, churn_ratio,
   issues_opened, issues_closed, issue_backlog_delta,
   contributor_count, contributor_turnover_frac, label_coverage_warn
+
+Notes:
+  - Code churn (additions/deletions) is NOT collected here: the
+    stats/code_frequency endpoint returns HTTP 422 for repos of this size.
+    Churn comes from local clones via collect_git_metrics.py.
+  - contributor_turnover_frac = fraction of the previous quarter's human
+    authors absent this quarter (bounded [0,1]). The paper's core-team
+    turnover measure (Mockus 80% cumulative-commit threshold) is computed
+    downstream from 08_contributor_history.csv.
+  - Bot accounts (dependabot, renovate, github-actions, *[bot], ...) are
+    excluded from author/contributor metrics and counted in commits_bot.
 
 Usage:
   $env:GITHUB_TOKEN = "ghp_..."   # Windows PowerShell
@@ -37,12 +49,25 @@ from datetime import datetime, timezone
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
+# Windows consoles/redirects default to cp1252, which can't encode the
+# arrows/checkmarks in log lines — force UTF-8 with replacement.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # ---------------------------------------------------------------------------
-# SSL context (Windows Python 3.13 CA bundle workaround)
+# SSL context — verified via certifi when available (Windows Python 3.13's
+# system CA bundle is unreliable); only falls back to unverified if neither
+# certifi nor the system bundle can be loaded.
 # ---------------------------------------------------------------------------
+# This machine sits behind a TLS-intercepting proxy/AV whose root cert
+# fails Python 3.13's default VERIFY_X509_STRICT (Basic Constraints not
+# marked critical). Chain verification still works with the system store
+# once the strict flag is dropped — far better than CERT_NONE.
 _SSL_CTX = ssl.create_default_context()
-_SSL_CTX.check_hostname = False
-_SSL_CTX.verify_mode = ssl.CERT_NONE
+_SSL_CTX.verify_flags &= ~ssl.VERIFY_X509_STRICT
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -85,7 +110,9 @@ QUARTERS = [
 PANEL_START  = "2023-01-01T00:00:00Z"
 PANEL_END    = "2026-01-01T00:00:00Z"
 PANEL_START_TS = 1672531200   # 2023-01-01 UTC unix
-PANEL_END_TS   = 1735689600   # 2026-01-01 UTC unix
+# BUGFIX 2026-07-05: this was 1735689600, which is 2025-01-01, not 2026-01-01.
+# It silently discarded every PR merged and issue opened/closed in 2025.
+PANEL_END_TS   = 1767225600   # 2026-01-01 UTC unix
 
 # Label substrings that identify a PR as refactor-type (case-insensitive)
 REFACTOR_LABEL_PATTERNS = [
@@ -94,6 +121,40 @@ REFACTOR_LABEL_PATTERNS = [
     "maintenance", "improvement", "architectural", "breaking-change",
     "breaking", "overhaul", "restructure", "rearchitect",
 ]
+
+# Title patterns for refactor-type PRs. Most repos here label < 50% of PRs,
+# so labels alone badly undercount (see label_coverage_warn). Deliberately
+# narrower than the label list: no bare "chore"/"improvement", which in
+# titles are dominated by dependency bumps and routine tweaks.
+REFACTOR_TITLE_RE = re.compile(
+    r"(^|\b)(refactor\w*|rewrite|rewrote|rewrit\w*|migrat\w*"
+    r"|clean[- ]?up|overhaul\w*|restructur\w*|re-?architect\w*"
+    r"|tech(nical)?[- ]debt|deprecat\w*)($|\b)",
+    re.IGNORECASE,
+)
+
+# Bot detection: excluded from author/contributor metrics, counted separately.
+KNOWN_BOT_LOGINS = {
+    "dependabot", "dependabot-preview", "renovate", "renovate-bot",
+    "github-actions", "github actions", "greenkeeper", "snyk-bot",
+    "codecov", "codecov-commenter", "imgbot", "allcontributors",
+    "pre-commit-ci", "semantic-release-bot", "mergify", "kodiakhq",
+    "devin-ai-integration", "sweep-ai", "vercel", "netlify", "sfdc-lightning",
+}
+
+def _is_bot(login: str) -> bool:
+    l = login.lower()
+    if l.startswith("_name:"):
+        l = l[len("_name:"):]
+    l = l.strip()
+    return (
+        l.endswith("[bot]")
+        or l in KNOWN_BOT_LOGINS
+        or "dependabot" in l
+        or "renovate" in l
+        or "github-actions" in l
+        or "github actions" in l
+    )
 
 OUT_DIR         = os.path.dirname(os.path.abspath(__file__))
 PANEL_CSV       = os.path.join(OUT_DIR, "08_panel_data.csv")
@@ -129,10 +190,11 @@ BASE_URL     = "https://api.github.com"
 
 PANEL_FIELDS = [
     "repo", "event_type", "quarter",
-    "commits",
-    "pr_count_total", "pr_count_refactor", "pr_refactor_ratio",
+    "commits", "commits_bot",
+    "pr_count_total", "pr_count_refactor",
+    "pr_count_refactor_label", "pr_count_refactor_title",
+    "pr_refactor_ratio",
     "pr_review_latency_median", "pr_review_latency_p75",
-    "additions", "deletions", "churn_ratio",
     "issues_opened", "issues_closed", "issue_backlog_delta",
     "contributor_count", "contributor_turnover_frac",
     "label_coverage_warn",
@@ -202,6 +264,11 @@ def _get(url: str, call_sleep: float = 0.3, retries: int = 3):
             if e.code == 409:
                 # Empty repo
                 return b"[]", {}
+            if e.code == 401:
+                # Bad credentials must be fatal: continuing writes rows of
+                # silent zeros into the panel (this happened 2026-07-05).
+                log(f"  [401] GitHub token rejected — aborting run")
+                raise SystemExit("FATAL: GITHUB_TOKEN is invalid or expired.")
             if e.code == 404:
                 log(f"  [404] not found: {url}")
                 return None, None
@@ -314,65 +381,24 @@ def _round2(v):
 # Data collectors
 # ---------------------------------------------------------------------------
 
-def collect_code_frequency(repo: str) -> dict:
-    """
-    Returns {quarter_name: (additions, deletions)} for all quarters.
-    Uses /repos/{repo}/stats/code_frequency (weekly data, cached by GitHub).
-    deletions in the API response are negative — we store absolute values.
-    Retries up to 3 times on 202 (computing).
-    """
-    url = f"{BASE_URL}/repos/{repo}/stats/code_frequency"
-    result = {q: (0, 0) for q, _, _ in QUARTERS}
-
-    for attempt in range(4):
-        body, headers = _get(url, call_sleep=0.5)
-        if body is None:
-            return result
-        if body == b"" or body == b"null":
-            # 202 was handled inside _get; if we get empty body, wait
-            log(f"  [code_freq] empty response attempt {attempt+1}, waiting 15s ...")
-            time.sleep(15)
-            continue
-        data = json.loads(body)
-        if not isinstance(data, list) or not data:
-            log(f"  [code_freq] unexpected response: {str(data)[:80]}")
-            return result
-
-        add_by_q = defaultdict(int)
-        del_by_q = defaultdict(int)
-        for entry in data:
-            ts, adds, dels = entry[0], entry[1], entry[2]
-            if ts < PANEL_START_TS or ts >= PANEL_END_TS:
-                continue
-            q = _ts_to_quarter(float(ts))
-            if q in result:
-                add_by_q[q] += max(0, adds)
-                del_by_q[q] += abs(dels)  # API returns negative deletions
-
-        for q in result:
-            result[q] = (add_by_q[q], del_by_q[q])
-        return result
-
-    log(f"  [code_freq] gave up for {repo}")
-    return result
-
-
 def collect_commits_and_authors(repo: str,
-                                skip_quarters: set = None) -> tuple[dict, dict]:
+                                skip_quarters: set = None) -> tuple[dict, dict, dict]:
     """
     Returns:
-      commits_by_q: {quarter: int | None}  — None means already saved, skip API call
-      authors_by_q: {quarter: dict | None} — None means load from authors_cache on use
-    Paginates commits per quarter to extract author.login.
-    Skips API calls for quarters in skip_quarters (already written to CSV).
+      commits_by_q:     {quarter: int | None}  — human (non-bot) commits
+      bot_commits_by_q: {quarter: int | None}
+      authors_by_q:     {quarter: dict | None} — human authors only
+    None sentinels mean the quarter was already saved (skip_quarters).
     """
     skip_quarters = skip_quarters or set()
     commits_by_q = {}
+    bot_commits_by_q = {}
     authors_by_q = {}
 
     for qname, since, until in QUARTERS:
         if qname in skip_quarters:
             commits_by_q[qname] = None   # sentinel: load from existing CSV
+            bot_commits_by_q[qname] = None
             authors_by_q[qname] = None
             log(f"   {qname}: skipped (already collected)")
             continue
@@ -380,23 +406,29 @@ def collect_commits_and_authors(repo: str,
         url = (f"{BASE_URL}/repos/{repo}/commits"
                f"?since={since}&until={until}&per_page=100")
         count = 0
+        bot_count = 0
         authors: dict[str, int] = defaultdict(int)
 
         for commit in _paginate(url, call_sleep=0.2):
-            count += 1
             author_obj = commit.get("author") or {}
             login = author_obj.get("login") if author_obj else None
             if not login:
                 commit_author = (commit.get("commit") or {}).get("author") or {}
                 name = commit_author.get("name") or "unknown"
                 login = f"_name:{name}"
+            if _is_bot(login):
+                bot_count += 1
+                continue
+            count += 1
             authors[login] += 1
 
         commits_by_q[qname] = count
+        bot_commits_by_q[qname] = bot_count
         authors_by_q[qname] = dict(authors)
-        log(f"   {qname}: {count:>5} commits, {len(authors):>3} authors")
+        log(f"   {qname}: {count:>5} human commits (+{bot_count} bot), "
+            f"{len(authors):>3} authors")
 
-    return commits_by_q, authors_by_q
+    return commits_by_q, bot_commits_by_q, authors_by_q
 
 
 def collect_prs(repo: str) -> dict:
@@ -411,7 +443,8 @@ def collect_prs(repo: str) -> dict:
            f"?state=closed&sort=updated&direction=desc&per_page=100")
 
     q_data: dict[str, dict] = {
-        q: {"total": 0, "refactor": 0, "latencies": [], "labeled_count": 0}
+        q: {"total": 0, "refactor_label": 0, "refactor_title": 0,
+            "refactor_any": 0, "latencies": [], "labeled_count": 0}
         for q, _, _ in QUARTERS
     }
     all_quarters = _quarter_set()
@@ -438,13 +471,20 @@ def collect_prs(repo: str) -> dict:
         if labels:
             q_data[q]["labeled_count"] += 1
         label_names = [lbl.get("name", "").lower() for lbl in labels]
-        is_refactor = any(
+        by_label = any(
             pattern in name
             for name in label_names
             for pattern in REFACTOR_LABEL_PATTERNS
         )
-        if is_refactor:
-            q_data[q]["refactor"] += 1
+        # Title matching (labels alone undercount where label coverage is low)
+        by_title = bool(REFACTOR_TITLE_RE.search(pr.get("title") or ""))
+
+        if by_label:
+            q_data[q]["refactor_label"] += 1
+        if by_title:
+            q_data[q]["refactor_title"] += 1
+        if by_label or by_title:
+            q_data[q]["refactor_any"] += 1
 
         # Review latency
         created_ts = _parse_iso(pr.get("created_at"))
@@ -537,65 +577,56 @@ def collect_repo(repo: str, event_type: str, call_sleep: float,
     if n_skip:
         log(f"  Resuming — {n_skip}/12 quarters already saved, skipping them")
 
-    # 1. Code frequency (1 API call, all-time weekly)
-    log("  → code frequency ...")
-    freq = collect_code_frequency(repo)
-
-    # 2. Commits + authors — skips already-done quarters
+    # 1. Commits + authors — skips already-done quarters
     log("  → commits + authors ...")
-    commits_by_q, authors_by_q = collect_commits_and_authors(repo, skip_quarters)
+    commits_by_q, bot_commits_by_q, authors_by_q = \
+        collect_commits_and_authors(repo, skip_quarters)
 
-    # 3. PRs (single paginated pass — always re-fetched for incomplete repos)
+    # 2. PRs (single paginated pass — always re-fetched for incomplete repos)
     log("  → closed PRs ...")
     pr_data = collect_prs(repo)
 
-    # 4. Issues (single paginated pass)
+    # 3. Issues (single paginated pass)
     log("  → issues ...")
     issue_data = collect_issues(repo)
 
-    # 5. Compute metrics and write one row per quarter immediately
-    quarter_names = [q for q, _, _ in QUARTERS]
+    # 4. Compute metrics and write one row per quarter immediately
     rows_written = 0
+    prev_authors: set = set()   # last non-empty human-author set seen
 
     for i, (qname, _, _) in enumerate(QUARTERS):
-        # Skip quarters already in the CSV
+        # Skip quarters already in the CSV, but keep turnover continuity
         if (repo, qname) in done_pairs:
-            # Still need prev_authors for turnover continuity; read from cache
-            prev_authors_this = authors_cache.get((repo, qname), set())
-            # Update running prev_authors for next iteration
-            if i == 0:
-                _prev = prev_authors_this
-            else:
-                _prev = prev_authors_this if prev_authors_this else _prev  # noqa: F821
+            cached = {a for a in authors_cache.get((repo, qname), set())
+                      if not _is_bot(a)}
+            if cached:
+                prev_authors = cached
             continue
 
-        # Resolve author set: None sentinel means this quarter was skipped in
-        # collect_commits_and_authors, which shouldn't happen for non-done quarters.
         raw_authors = authors_by_q.get(qname)
         curr_authors = set(raw_authors.keys()) if raw_authors else set()
 
-        # Contributor turnover: compare to previous quarter's author set
-        if i == 0:
-            _prev = set()
-        prev_authors = _prev
-
+        # Turnover = fraction of previous quarter's authors absent this
+        # quarter (bounded [0,1]). None for the first observed quarter.
         if not prev_authors:
             turnover_frac = None
         else:
-            new_count = len(curr_authors - prev_authors)
-            turnover_frac = round(new_count / len(prev_authors), 4)
+            departed = len(prev_authors - curr_authors)
+            turnover_frac = round(departed / len(prev_authors), 4)
 
-        # Advance prev_authors (keep last non-empty set for continuity)
-        _prev = curr_authors if curr_authors else prev_authors
+        if curr_authors:
+            prev_authors = curr_authors
 
         # PR metrics
         pq = pr_data.get(qname, {})
-        total_prs     = pq.get("total", 0)
-        refactor_prs  = pq.get("refactor", 0)
-        latencies     = pq.get("latencies", [])
-        labeled_count = pq.get("labeled_count", 0)
+        total_prs      = pq.get("total", 0)
+        refactor_any   = pq.get("refactor_any", 0)
+        refactor_label = pq.get("refactor_label", 0)
+        refactor_title = pq.get("refactor_title", 0)
+        latencies      = pq.get("latencies", [])
+        labeled_count  = pq.get("labeled_count", 0)
 
-        refactor_ratio = round(refactor_prs / total_prs, 4) if total_prs > 0 else None
+        refactor_ratio = round(refactor_any / total_prs, 4) if total_prs > 0 else None
         lat_median     = _round2(_median(latencies))
         lat_p75        = _round2(_percentile(latencies, 75))
 
@@ -603,32 +634,29 @@ def collect_repo(repo: str, event_type: str, call_sleep: float,
             1 if total_prs >= 10 and (labeled_count / total_prs) < 0.05 else 0
         )
 
-        # Code churn
-        adds, dels = freq.get(qname, (0, 0))
-        churn_ratio = round(dels / (adds + dels + 1), 4)
-
         # Issues
         iq = issue_data.get(qname, {})
         issues_opened = iq.get("opened", 0)
         issues_closed = iq.get("closed", 0)
         backlog_delta = issues_opened - issues_closed
 
-        commits   = commits_by_q.get(qname) or 0
-        n_authors = len(curr_authors)
+        commits     = commits_by_q.get(qname) or 0
+        commits_bot = bot_commits_by_q.get(qname) or 0
+        n_authors   = len(curr_authors)
 
         row = {
             "repo":                      repo,
             "event_type":                event_type,
             "quarter":                   qname,
             "commits":                   commits,
+            "commits_bot":               commits_bot,
             "pr_count_total":            total_prs,
-            "pr_count_refactor":         refactor_prs,
+            "pr_count_refactor":         refactor_any,
+            "pr_count_refactor_label":   refactor_label,
+            "pr_count_refactor_title":   refactor_title,
             "pr_refactor_ratio":         refactor_ratio if refactor_ratio is not None else "",
             "pr_review_latency_median":  lat_median if lat_median is not None else "",
             "pr_review_latency_p75":     lat_p75 if lat_p75 is not None else "",
-            "additions":                 adds,
-            "deletions":                 dels,
-            "churn_ratio":               churn_ratio,
             "issues_opened":             issues_opened,
             "issues_closed":             issues_closed,
             "issue_backlog_delta":       backlog_delta,
